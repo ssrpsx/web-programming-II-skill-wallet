@@ -68,3 +68,24 @@ export async function logOut() {
   cookieStore.delete("token")
   redirect("/signin")
 }
+
+export async function updateProfile(
+  prevState: { error?: string; success?: boolean },
+  formData: FormData
+): Promise<{ error?: string; success?: boolean }> {
+  const name = formData.get("name") as string
+  const userId = formData.get("userId") as string
+  const photo = formData.get("photo") as string
+  const birthDate = formData.get("birthDate") as string
+
+  try {
+    await apiFetch(`/users/${userId}`, {
+      method: "PATCH",
+      body: JSON.stringify({ name, photo, birthDate }),
+    })
+    return { success: true }
+  } catch (e: unknown) {
+    return { error: (e as Error).message }
+  }
+}
+

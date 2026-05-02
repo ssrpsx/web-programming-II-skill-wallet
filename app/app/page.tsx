@@ -111,7 +111,7 @@ export default async function AppPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
         <div className="border border-blue-200 rounded-lg p-6 bg-blue-50">
           <h2 className="text-blue-600 text-sm font-medium">Total Collections</h2>
           <p className="text-4xl font-bold mt-2 text-blue-900">-</p>
@@ -147,7 +147,7 @@ export default async function AppPage() {
       </div>
 
       {/* Recent Activity & Skill Progress */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Recent Activity */}
         <div className="border rounded-lg p-6">
           <h2 className="text-lg font-bold mb-4">Recent Activity</h2>

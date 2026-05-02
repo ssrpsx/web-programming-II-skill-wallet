@@ -4,8 +4,8 @@ import { Book } from "lucide-react"
 
 export default function SignInPage() {
   return (
-    <div className="max-h-svh lg:grid lg:grid-cols-2">
-      <div className="flex flex-col p-6">
+    <div className="min-h-svh lg:grid lg:grid-cols-2">
+      <div className="flex min-h-svh flex-col p-6 lg:min-h-0">
         <Link href="/">
           <h1 className="text-md mb-8 flex items-center gap-2 font-semibold">
             <Book /> Skill Collection
@@ -17,7 +17,7 @@ export default function SignInPage() {
           </div>
         </div>
       </div>
-      <div className="p-6 w-full h-full max-h-screen flex items-center justify-center overflow-hidden">
+      <div className="hidden p-6 lg:flex lg:items-center lg:justify-center lg:overflow-hidden">
         <img
           src="/wallpaper.png"
           alt="Sign In"
