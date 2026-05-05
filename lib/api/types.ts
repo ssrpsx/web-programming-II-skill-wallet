@@ -2,6 +2,7 @@ export interface User {
   _id: string
   email: string
   name: string
+  role: "user" | "interviewer"
   photo?: string
   birthDate?: string
 }

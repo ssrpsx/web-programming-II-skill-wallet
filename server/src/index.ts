@@ -44,6 +44,13 @@ async function startServer() {
     await connectDB()
     console.log("✓ MongoDB connection established")
 
+    // Seed database if requested
+    if (process.env.AUTO_SEED === "true") {
+      const { runSeed } = await import("./seed-test-users");
+      await runSeed(false);
+      console.log("✓ Database auto-seeded");
+    }
+
     // Start Express server
     app.listen(port, () => {
       console.log(`✓ Server listening on port ${port}...`)

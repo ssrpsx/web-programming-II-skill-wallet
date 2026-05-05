@@ -12,14 +12,16 @@ import { CreateVerificationForm } from "./create-verification-form"
 import { PlusCircle } from "lucide-react"
 import type { User, Skill } from "@/lib/api/types"
 
+import { Subject } from "@/lib/questions"
+
 interface CreateVerificationDialogProps {
   user: User | null
-  skills: Skill[]
+  subjects: Subject[]
 }
 
 export function CreateVerificationDialog({
   user,
-  skills,
+  subjects,
 }: CreateVerificationDialogProps) {
   const [open, setOpen] = useState(false)
 
@@ -37,12 +39,12 @@ export function CreateVerificationDialog({
         <DialogHeader>
           <DialogTitle>Create New Verification</DialogTitle>
           <p className="text-sm text-gray-500 mt-1">
-            Select a skill to begin the verification process.
+            Select a subject to begin the verification test.
           </p>
         </DialogHeader>
         <CreateVerificationForm
           user={user}
-          skills={skills}
+          subjects={subjects}
           onSuccess={() => setOpen(false)}
         />
       </DialogContent>

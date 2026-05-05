@@ -11,13 +11,32 @@ export const createVerification = async (req: Request, res: Response) => {
       return res.status(400).json({ error: result.error });
     }
 
-    // Validate that skill exists
-    const skill = await Skill.findById((result.data as any).skillId);
+    const data = result.data as any;
+    let skillId = data.skillId;
+
+    // Validate or Find/Create skill
+    if (!skillId && data.skillTitle) {
+      let skill = await Skill.findOne({ title: data.skillTitle });
+      if (!skill) {
+        skill = await Skill.create({
+          title: data.skillTitle,
+          category: "General", // Default category
+          description: `Auto-created skill for ${data.skillTitle}`,
+        });
+      }
+      skillId = skill._id;
+    }
+
+    const skill = await Skill.findById(skillId);
     if (!skill) {
       return res.status(404).json({ error: "Skill not found" });
     }
 
-    const verification = await Verification.create(result.data as any);
+    const verification = await Verification.create({
+      userId: data.userId,
+      skillId: skillId,
+      levelData: data.levelData || [],
+    });
 
     // Auto-generate choice level with mock questions
     const mockQuestions = generateMockQuestions(skill.title);
@@ -133,12 +152,35 @@ export const submitAnswers = async (req: Request, res: Response) => {
     if (score >= 80) {
       choiceLevel.status = "completed";
 
-      // Auto-create p2p_interview level
+      // TASK 9: สุ่ม user ที่ verify สกิลนั้นแล้ว 2 คน
+      // Mocking the random selection logic
+      const verifiedUsers = await Verification.find({
+        skillId: verification.skillId,
+        "levelData.level": "interview",
+        "levelData.status": "completed"
+      });
+      
+      const scheduledTime = new Date();
+      scheduledTime.setDate(scheduledTime.getDate() + 1); // schedule for tomorrow
+
+      const p2pRooms = [
+        process.env.DISCORD_P2P_ROOM_1,
+        process.env.DISCORD_P2P_ROOM_2,
+        process.env.DISCORD_P2P_ROOM_3
+      ].filter(Boolean);
+      
+      
+      const selectedRoom = p2pRooms[Math.floor(Math.random() * p2pRooms.length)] || process.env.DISCORD_JOIN_LINK || "https://discord.gg/skillcollection";
+
       verification.levelData.push({
         level: "p2p_interview",
         status: "pending",
-        link: "https://discord.gg/mock-link",
+        link: selectedRoom,
       });
+
+      console.log(`[EMAIL MOCK - P2P] สุ่มเลือก User 2 คนที่ผ่านสกิลนี้แล้ว`);
+      console.log(`[EMAIL MOCK - P2P] ส่งอีเมลแจ้งเตือน P2P Review ในวันที่ ${scheduledTime.toLocaleString()}`);
+      console.log(`[EMAIL MOCK - P2P] ลิ้งก์ Discord ห้องที่ว่าง: ${selectedRoom}`);
 
       await verification.save();
       return res.status(200).json({
@@ -149,6 +191,7 @@ export const submitAnswers = async (req: Request, res: Response) => {
       });
     } else {
       choiceLevel.status = "failed";
+      choiceLevel.verifiedAt = new Date();
       await verification.save();
       return res.status(200).json({
         passed: false,
@@ -195,27 +238,126 @@ export const completeLevel = async (req: Request, res: Response) => {
       return res.status(409).json({ error: `Level '${req.params.level}' is not pending (status: ${levelEntry.status})` });
     }
 
-    // Mark level as completed
-    levelEntry.status = "completed";
-    levelEntry.verifiedAt = new Date();
+    // Update status and metadata
     const data = result.data as any;
+    levelEntry.status = data.status;
+    levelEntry.verifiedAt = new Date();
     if (data.verifiedBy) {
       levelEntry.verifiedBy = data.verifiedBy as any;
     }
 
-    // Auto-create interview level if completing p2p_interview
-    if (req.params.level === "p2p_interview") {
-      verification.levelData.push({
-        level: "interview",
-        status: "pending",
-        link: "https://meet.google.com/mock-link",
-      });
+    // Auto-create next level ONLY IF completed
+    if (data.status === "completed") {
+      if (req.params.level === "p2p_interview") {
+        // TASK 10: ระบบ interview ทำเหมือนกับ p2p แต่เป็น user ที่มียศ interviewer เท่านั้น
+        // Mocking the random selection of 2 interviewers
+        const scheduledTime = new Date();
+        scheduledTime.setDate(scheduledTime.getDate() + 2);
+
+        const interviewRooms = [
+          process.env.DISCORD_INTERVIEW_ROOM_1,
+          process.env.DISCORD_INTERVIEW_ROOM_2,
+          process.env.DISCORD_INTERVIEW_ROOM_3
+        ].filter(Boolean);
+
+        const selectedRoom = interviewRooms[Math.floor(Math.random() * interviewRooms.length)] || process.env.DISCORD_JOIN_LINK || "https://discord.gg/skillcollection";
+
+        verification.levelData.push({
+          level: "interview",
+          status: "pending",
+          link: selectedRoom,
+        });
+
+        console.log(`[EMAIL MOCK - INTERVIEW] สุ่มเลือก Interviewer 2 คน`);
+        console.log(`[EMAIL MOCK - INTERVIEW] ส่งอีเมลแจ้งเตือน Interview ในวันที่ ${scheduledTime.toLocaleString()}`);
+        console.log(`[EMAIL MOCK - INTERVIEW] ลิ้งก์ Discord ห้องที่ว่าง: ${selectedRoom}`);
+      }
     }
 
     await verification.save();
     res.status(200).json(verification);
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Failed to complete level";
+    res.status(500).json({ error: message });
+  }
+};
+
+export const initiateP2P = async (req: Request, res: Response) => {
+  try {
+    const verification = await Verification.findById(req.params.id).populate("skillId").populate("userId");
+    if (!verification) return res.status(404).json({ error: "Verification not found" });
+
+    const skill = verification.skillId as any;
+    const user = verification.userId as any;
+
+    if (!skill || !user) {
+      return res.status(400).json({ error: "Verification is missing skill or user data" });
+    }
+
+    const skillId = skill._id;
+    const currentUserId = user._id;
+
+    // Find users who have completed 'choice' level for this skill
+    const potentialPeers = await Verification.find({
+      skillId: skillId,
+      userId: { $ne: currentUserId },
+      "levelData": {
+        $elemMatch: {
+          level: "choice",
+          status: "completed"
+        }
+      }
+    }).populate("userId");
+
+    if (potentialPeers.length === 0) {
+      return res.status(400).json({ error: "No verified peers found for this skill. At least one other user must pass Level 1 to be a peer." });
+    }
+
+    // Randomly select 1 peer
+    const randomPeerVerification = potentialPeers[Math.floor(Math.random() * potentialPeers.length)];
+    const peer = randomPeerVerification.userId as any;
+
+    if (!peer) {
+      return res.status(400).json({ error: "Failed to identify a peer user." });
+    }
+
+    // Select a random P2P room from env
+    const p2pRooms = [
+      process.env.DISCORD_P2P_ROOM_1,
+      process.env.DISCORD_P2P_ROOM_2,
+      process.env.DISCORD_P2P_ROOM_3
+    ].filter(Boolean);
+    
+    const selectedRoom = p2pRooms[Math.floor(Math.random() * p2pRooms.length)] || process.env.DISCORD_JOIN_LINK || "https://discord.gg/skillcollection";
+
+    // Find or update the P2P level
+    let p2pLevel = verification.levelData.find(l => l.level === "p2p_interview");
+    if (!p2pLevel) {
+       p2pLevel = {
+         level: "p2p_interview",
+         status: "pending",
+       } as any;
+       verification.levelData.push(p2pLevel!);
+       p2pLevel = verification.levelData[verification.levelData.length - 1];
+    }
+    
+    p2pLevel!.verifiedBy = peer._id;
+    p2pLevel!.link = selectedRoom;
+    p2pLevel!.status = "pending"; // Ensure it's pending
+
+    await verification.save();
+
+    // Mock Email sending
+    console.log(`[P2P] Peer assigned: ${peer.email} for verification ${verification._id}`);
+
+    res.json({
+      message: "P2P initiated successfully",
+      peerName: peer.name,
+      verification
+    });
+  } catch (error: unknown) {
+    console.error("Error in initiateP2P:", error);
+    const message = error instanceof Error ? error.message : "Failed to initiate P2P";
     res.status(500).json({ error: message });
   }
 };
@@ -235,6 +377,21 @@ export const retryChoice = async (req: Request, res: Response) => {
 
     if (choiceLevel.status !== "failed") {
       return res.status(409).json({ error: `Choice level is not failed (status: ${choiceLevel.status})` });
+    }
+
+    // Cooldown check (24 hours)
+    if (choiceLevel.verifiedAt) {
+      const lastFailedAt = new Date(choiceLevel.verifiedAt).getTime();
+      const oneDay = 24 * 60 * 60 * 1000;
+      const now = Date.now();
+      
+      if (now - lastFailedAt < oneDay) {
+        const remainingMs = oneDay - (now - lastFailedAt);
+        const remainingHours = Math.ceil(remainingMs / (1000 * 60 * 60));
+        return res.status(403).json({ 
+          error: `Cooldown active. Please wait ${remainingHours} more hours before retrying.` 
+        });
+      }
     }
 
     // Get skill to regenerate questions

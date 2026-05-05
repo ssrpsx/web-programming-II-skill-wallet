@@ -2,11 +2,11 @@ import { NextRequest, NextResponse } from "next/server"
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("token")
-  const isAuth = !!token
+  const isAuth = !!token?.value
   const pathname = request.nextUrl.pathname
 
-  // Redirect unauthenticated users away from /app
-  if (pathname.startsWith("/app") && !isAuth) {
+  // Redirect unauthenticated users away from protected routes
+  if ((pathname.startsWith("/app") || pathname.startsWith("/verify")) && !isAuth) {
     return NextResponse.redirect(new URL("/signin", request.url))
   }
 
@@ -19,5 +19,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/app/:path*", "/signin", "/signup"],
+  matcher: ["/app/:path*", "/verify/:path*", "/signin", "/signup"],
 }

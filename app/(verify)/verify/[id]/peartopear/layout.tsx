@@ -15,7 +15,6 @@ export default function PeerToPeerLayout({
                         <ChevronLeft size={20} />
                         <span className="text-sm font-medium">Start Collection</span>
                     </Link>
-                    <div className="text-sm text-gray-500">Waiting</div>
                 </div>
             </header>
 

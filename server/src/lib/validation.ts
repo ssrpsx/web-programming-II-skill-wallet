@@ -80,8 +80,12 @@ const levelDataSchema = z.object({
 
 export const createVerificationSchema = z.object({
   userId: z.string().min(1, "User ID is required"),
-  skillId: z.string().min(1, "Skill ID is required"),
+  skillId: z.string().optional(),
+  skillTitle: z.string().optional(),
   levelData: z.array(levelDataSchema).default([]),
+}).refine(data => data.skillId || data.skillTitle, {
+  message: "Either skillId or skillTitle must be provided",
+  path: ["skillId"],
 });
 
 export const updateVerificationSchema = z.object({
@@ -97,6 +101,7 @@ export const submitAnswersSchema = z.object({
 
 export const completeLevelSchema = z.object({
   verifiedBy: z.string().optional(),
+  status: z.enum(["completed", "failed"]).default("completed"),
 });
 
 export type SubmitAnswersInput = z.infer<typeof submitAnswersSchema>;

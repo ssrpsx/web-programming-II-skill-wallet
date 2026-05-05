@@ -5,7 +5,7 @@ import SignUpForm from "@/components/auth/signup-form"
 
 export default function SignUpPage() {
   return (
-    <div className="min-h-svh lg:grid lg:grid-cols-2">
+    <div className="min-h-svh lg:h-svh lg:grid lg:grid-cols-2">
       <div className="flex min-h-svh flex-col p-6 lg:min-h-0">
         <Link href="/">
           <h1 className="text-md mb-8 flex items-center gap-2 font-semibold">

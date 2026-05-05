@@ -52,6 +52,7 @@ export function VerifyItemComponent({ item, routePath: propRoutePath }: VerifyIt
             router.push(`/verify/${item.id}/choice`)
         } catch (error) {
             console.error('Retry failed:', error)
+            alert(error instanceof Error ? error.message : 'Failed to retry. Please wait for the cooldown.')
             setIsRetrying(false)
         }
     }
@@ -80,68 +81,68 @@ export function VerifyItemComponent({ item, routePath: propRoutePath }: VerifyIt
             >
                 <Item variant="outline" className="cursor-pointer hover:bg-gray-50 transition">
                     <ItemContent className="flex-row items-start flex-1">
-                        <div className="flex items-center gap-4 flex-1">
-                            {/* Skills Column */}
-                            <div className="w-32">
-                                <Badge className={`${skillColorMap[item.skillColor]} border-0`}>
-                                    {item.skill}
-                                </Badge>
-                            </div>
-
-                            {/* Details Column */}
-                            <div className="flex-1">
-                                <ItemDescription className="m-0 whitespace-pre-wrap text-xs">
-                                    {item.details}
-                                </ItemDescription>
-                            </div>
-
-                            {/* Status Column */}
-                            <div className="w-24">
-                                <Badge className={`${statusColorMap[item.status]} border-0`}>
-                                    {isRetrying ? 'Retrying...' : statusLabelMap[item.status]}
-                                </Badge>
-                            </div>
-                        </div>
-                    </ItemContent>
-
-                    {/* Action */}
-                    <ItemActions className="ml-4">
-                        <div className="p-2 hover:bg-gray-100 rounded transition">
-                            <ChevronRight size={18} className="text-gray-400" />
-                        </div>
-                    </ItemActions>
-                </Item>
-            </button>
-        )
-    }
-
-    // For non-failed status, use Link
-    return (
-        <Link href={routePath} className="no-underline">
-            <Item variant="outline" className="cursor-pointer hover:bg-gray-50 transition">
-                <ItemContent className="flex-row items-start flex-1">
-                    <div className="flex items-center gap-4 flex-1">
+                    <div className="flex items-center gap-4 flex-1 overflow-hidden">
                         {/* Skills Column */}
-                        <div className="w-32">
-                            <Badge className={`${skillColorMap[item.skillColor]} border-0`}>
+                        <div className="min-w-[140px] flex-shrink-0">
+                            <Badge className={`${skillColorMap[item.skillColor]} border-0 whitespace-normal break-words py-1`}>
                                 {item.skill}
                             </Badge>
                         </div>
 
                         {/* Details Column */}
-                        <div className="flex-1">
-                            <ItemDescription className="m-0 whitespace-pre-wrap text-xs">
+                        <div className="flex-1 min-w-0">
+                            <ItemDescription className="m-0 whitespace-pre-wrap text-xs truncate sm:whitespace-normal sm:overflow-visible">
                                 {item.details}
                             </ItemDescription>
                         </div>
 
                         {/* Status Column */}
-                        <div className="w-24">
+                        <div className="min-w-[100px] flex-shrink-0 text-right">
                             <Badge className={`${statusColorMap[item.status]} border-0`}>
-                                {statusLabelMap[item.status]}
+                                {isRetrying ? 'Retrying...' : statusLabelMap[item.status]}
                             </Badge>
                         </div>
                     </div>
+                </ItemContent>
+
+                {/* Action */}
+                <ItemActions className="ml-4 flex-shrink-0">
+                    <div className="p-2 hover:bg-gray-100 rounded transition">
+                        <ChevronRight size={18} className="text-gray-400" />
+                    </div>
+                </ItemActions>
+            </Item>
+        </button>
+    )
+}
+
+// For non-failed status, use Link
+return (
+    <Link href={routePath} className="no-underline">
+        <Item variant="outline" className="cursor-pointer hover:bg-gray-50 transition">
+            <ItemContent className="flex-row items-start flex-1 overflow-hidden">
+                <div className="flex items-center gap-4 flex-1 overflow-hidden">
+                    {/* Skills Column */}
+                    <div className="min-w-[140px] flex-shrink-0">
+                        <Badge className={`${skillColorMap[item.skillColor]} border-0 whitespace-normal break-words py-1`}>
+                            {item.skill}
+                        </Badge>
+                    </div>
+
+                    {/* Details Column */}
+                    <div className="flex-1 min-w-0">
+                        <ItemDescription className="m-0 whitespace-pre-wrap text-xs truncate sm:whitespace-normal sm:overflow-visible">
+                            {item.details}
+                        </ItemDescription>
+                    </div>
+
+                    {/* Status Column */}
+                    <div className="min-w-[100px] flex-shrink-0 text-right">
+                        <Badge className={`${statusColorMap[item.status]} border-0`}>
+                            {statusLabelMap[item.status]}
+                        </Badge>
+                    </div>
+                </div>
                 </ItemContent>
 
                 {/* Action */}

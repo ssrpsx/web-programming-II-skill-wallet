@@ -66,24 +66,6 @@ export default async function SideNav() {
       <SidebarContent className="px-4">
         <SidebarGroup>
           <SidebarMenu>
-            <SidebarMenuItem className="py-2">
-              <SidebarMenuButton asChild>
-                <Button
-                  variant="default"
-                  className="flex w-full items-center justify-start px-2"
-                  asChild
-                >
-                  <Link href="/app/collections?create=true">
-                    <PlusCircle />
-                    <span>New Collection</span>
-                  </Link>
-                </Button>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroup>
-        <SidebarGroup>
-          <SidebarMenu>
             {menu.map((menu) => (
               <SidebarMenuItem key={menu.name} className="py-2">
                 <SidebarMenuButton asChild>

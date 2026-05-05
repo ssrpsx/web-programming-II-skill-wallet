@@ -1,0 +1,2714 @@
+[
+  {
+    "SubjectName": "Object-Oriented Programming",
+    "Time": 12,
+    "question": [
+      {
+        "id": 1,
+        "text": "ข้อใดไม่ใช่คุณสมบัติหลัก 4 ประการของ OOP?",
+        "options": [
+          "Encapsulation",
+          "Compilation",
+          "Inheritance",
+          "Polymorphism"
+        ],
+        "answer": "Compilation"
+      },
+      {
+        "id": 2,
+        "text": "แนวคิดที่เปรียบเสมือน 'พิมพ์เขียว' (Blueprint) สำหรับใช้สร้างออบเจกต์เรียกว่าอะไร?",
+        "options": [
+          "Class",
+          "Object",
+          "Method",
+          "Attribute"
+        ],
+        "answer": "Class"
+      },
+      {
+        "id": 3,
+        "text": "ตัวแปรที่เป็นตัวแทนของสิ่งที่ถูกสร้างขึ้นมาจาก Class และมีตัวตนในหน่วยความจำเรียกว่าอะไร?",
+        "options": [
+          "Function",
+          "Object",
+          "Variable",
+          "Method"
+        ],
+        "answer": "Object"
+      },
+      {
+        "id": 4,
+        "text": "การซ่อนรายละเอียดความซับซ้อนของการทำงาน และแสดงเฉพาะสิ่งที่จำเป็นต่อผู้ใช้งาน คือคุณสมบัติใด?",
+        "options": [
+          "Encapsulation",
+          "Abstraction",
+          "Inheritance",
+          "Polymorphism"
+        ],
+        "answer": "Abstraction"
+      },
+      {
+        "id": 5,
+        "text": "การห่อหุ้มข้อมูล (Data) และเมธอด (Method) ไว้ด้วยกัน เพื่อป้องกันการเข้าถึงหรือดัดแปลงจากภายนอกโดยตรง คือคุณสมบัติใด?",
+        "options": [
+          "Encapsulation",
+          "Abstraction",
+          "Inheritance",
+          "Polymorphism"
+        ],
+        "answer": "Encapsulation"
+      },
+      {
+        "id": 6,
+        "text": "การที่คลาสหนึ่งสามารถรับคุณสมบัติและพฤติกรรมมาจากอีกคลาสหนึ่งได้ เพื่อลดการเขียนโค้ดซ้ำซ้อน คือคุณสมบัติใด?",
+        "options": [
+          "Encapsulation",
+          "Abstraction",
+          "Inheritance",
+          "Polymorphism"
+        ],
+        "answer": "Inheritance"
+      },
+      {
+        "id": 7,
+        "text": "การที่ออบเจกต์สามารถตอบสนองต่อเมธอดชื่อเดียวกัน ในรูปแบบการทำงานที่แตกต่างกันได้ คือคุณสมบัติใด?",
+        "options": [
+          "Encapsulation",
+          "Abstraction",
+          "Inheritance",
+          "Polymorphism"
+        ],
+        "answer": "Polymorphism"
+      },
+      {
+        "id": 8,
+        "text": "Access Modifier ใดที่อนุญาตให้คลาสลูก (Subclass) สามารถเข้าถึงข้อมูลของคลาสแม่ (Superclass) ได้ แต่ภายนอก (คลาสอื่นทั่วไป) เข้าถึงไม่ได้?",
+        "options": [
+          "public",
+          "private",
+          "protected",
+          "default"
+        ],
+        "answer": "protected"
+      },
+      {
+        "id": 9,
+        "text": "เมธอดพิเศษที่จะถูกเรียกใช้อัตโนมัติในตอนที่มีการสร้างออบเจกต์ (Object) ใหม่ขึ้นมาคืออะไร?",
+        "options": [
+          "Destructor",
+          "Constructor",
+          "Getter",
+          "Setter"
+        ],
+        "answer": "Constructor"
+      },
+      {
+        "id": 10,
+        "text": "เมธอดพิเศษที่จะถูกเรียกใช้อัตโนมัติเมื่อออบเจกต์ถูกทำลายหรือคืนพื้นที่หน่วยความจำคืออะไร?",
+        "options": [
+          "Destructor",
+          "Constructor",
+          "Getter",
+          "Setter"
+        ],
+        "answer": "Destructor"
+      },
+      {
+        "id": 11,
+        "text": "ความสัมพันธ์แบบ 'IS-A' (เป็น...) เช่น หมาเป็นสัตว์ สื่อถึงแนวคิดใดใน OOP?",
+        "options": [
+          "Aggregation",
+          "Composition",
+          "Inheritance",
+          "Encapsulation"
+        ],
+        "answer": "Inheritance"
+      },
+      {
+        "id": 12,
+        "text": "ความสัมพันธ์แบบ 'HAS-A' (มี...) เช่น รถยนต์มีล้อ สื่อถึงแนวคิดใดใน OOP?",
+        "options": [
+          "Inheritance",
+          "Polymorphism",
+          "Composition",
+          "Abstraction"
+        ],
+        "answer": "Composition"
+      },
+      {
+        "id": 13,
+        "text": "การสร้างเมธอดชื่อเดียวกันในคลาสเดียวกัน แต่รับพารามิเตอร์ต่างกัน (จำนวนหรือชนิดข้อมูล) เรียกว่าอะไร?",
+        "options": [
+          "Method Overriding",
+          "Method Overloading",
+          "Method Hiding",
+          "Method Shadowing"
+        ],
+        "answer": "Method Overloading"
+      },
+      {
+        "id": 14,
+        "text": "การที่คลาสลูกนิยามการทำงานของเมธอดใหม่ ทับเมธอดเดิมของคลาสแม่ ซึ่งมีชื่อและพารามิเตอร์เหมือนกันทุกประการ เรียกว่าอะไร?",
+        "options": [
+          "Method Overriding",
+          "Method Overloading",
+          "Method Hiding",
+          "Method Shadowing"
+        ],
+        "answer": "Method Overriding"
+      },
+      {
+        "id": 15,
+        "text": "คลาสที่ไม่สามารถนำไปสร้างออบเจกต์ (Instantiate) ได้โดยตรง มักใช้เป็นคลาสต้นแบบบังคับให้คลาสลูกนำไปสานต่อ เรียกว่าอะไร?",
+        "options": [
+          "Concrete Class",
+          "Abstract Class",
+          "Final Class",
+          "Static Class"
+        ],
+        "answer": "Abstract Class"
+      },
+      {
+        "id": 16,
+        "text": "คีย์เวิร์ด (Keyword) ใดมักใช้เพื่ออ้างอิงถึงออบเจกต์ปัจจุบัน (Current Object) ภายในคลาสเดียวกัน เพื่อแยกความแตกต่างกับพารามิเตอร์?",
+        "options": [
+          "super / base",
+          "this / self",
+          "final / const",
+          "static / class"
+        ],
+        "answer": "this / self"
+      },
+      {
+        "id": 17,
+        "text": "คีย์เวิร์ดใดมักใช้ในการอ้างอิงและเรียกใช้งานเมธอดหรือคอนสตรัคเตอร์ของคลาสแม่ (Superclass)?",
+        "options": [
+          "super",
+          "this",
+          "new",
+          "return"
+        ],
+        "answer": "super"
+      },
+      {
+        "id": 18,
+        "text": "ข้อใดคือประโยชน์หลักของการทำ Encapsulation คู่กับการใช้ Getter / Setter?",
+        "options": [
+          "ช่วยให้โปรแกรมคอมไพล์เร็วขึ้น",
+          "ป้องกันข้อมูลถูกแก้ไขอย่างไม่ถูกต้องและควบคุมการตั้งค่าจากภายนอกได้",
+          "ทำให้ไม่ต้องเขียนโค้ดซ้ำซ้อน",
+          "ทำให้สามารถสืบทอดคลาสได้ง่ายขึ้น"
+        ],
+        "answer": "ป้องกันข้อมูลถูกแก้ไขอย่างไม่ถูกต้องและควบคุมการตั้งค่าจากภายนอกได้"
+      },
+      {
+        "id": 19,
+        "text": "สมาชิก (Member) ของคลาสที่ถูกประกาศเป็น Static จะมีพฤติกรรมอย่างไร?",
+        "options": [
+          "เข้าถึงได้เฉพาะคลาสลูกเท่านั้น",
+          "มีค่าแยกเป็นอิสระของแต่ละออบเจกต์",
+          "ถูกแชร์ใช้งานร่วมกันในระดับคลาส โดยไม่ต้องสร้างออบเจกต์",
+          "ไม่สามารถแก้ไขค่าได้เลย"
+        ],
+        "answer": "ถูกแชร์ใช้งานร่วมกันในระดับคลาส โดยไม่ต้องสร้างออบเจกต์"
+      },
+      {
+        "id": 20,
+        "text": "คอนเซปต์ใดของ OOP ที่ Interface มีบทบาทสำคัญที่สุดในการประยุกต์ใช้งานเพื่อกำหนดสเปคการทำงาน?",
+        "options": [
+          "Encapsulation",
+          "Abstraction",
+          "Instantiation",
+          "Data Hiding"
+        ],
+        "answer": "Abstraction"
+      }
+    ]
+  },
+  {
+    "SubjectName": "Discrete Mathematics",
+    "Time": 15,
+    "question": [
+      {
+        "id": 1,
+        "text": "ข้อใดคือความหมายของ 'ประพจน์' (Proposition) ในทางตรรกศาสตร์?",
+        "options": [
+          "ประโยคคำถามที่ต้องการคำตอบ",
+          "ประโยคที่มีตัวแปรผสมอยู่",
+          "ประโยคบอกเล่าหรือปฏิเสธที่สามารถบอกได้ว่าเป็นจริงหรือเท็จอย่างใดอย่างหนึ่ง",
+          "ประโยคคำสั่งหรือขอร้อง"
+        ],
+        "answer": "ประโยคบอกเล่าหรือปฏิเสธที่สามารถบอกได้ว่าเป็นจริงหรือเท็จอย่างใดอย่างหนึ่ง"
+      },
+      {
+        "id": 2,
+        "text": "กำหนดให้ p มีค่าความจริงเป็น 'จริง' และ q มีค่าความจริงเป็น 'เท็จ' ประพจน์ในข้อใดมีค่าความจริงเป็น 'จริง'?",
+        "options": [
+          "p และ q (p ∧ q)",
+          "p หรือ q (p ∨ q)",
+          "ถ้า p แล้ว q (p -> q)",
+          "นิเสธ p (~p)"
+        ],
+        "answer": "p หรือ q (p ∨ q)"
+      },
+      {
+        "id": 3,
+        "text": "ประพจน์ 'ถ้า p แล้ว q' (p -> q) จะมีค่าความจริงเป็น 'เท็จ' ในกรณีใดเพียงกรณีเดียว?",
+        "options": [
+          "p เป็นจริง, q เป็นจริง",
+          "p เป็นเท็จ, q เป็นจริง",
+          "p เป็นเท็จ, q เป็นเท็จ",
+          "p เป็นจริง, q เป็นเท็จ"
+        ],
+        "answer": "p เป็นจริง, q เป็นเท็จ"
+      },
+      {
+        "id": 4,
+        "text": "สูตรในการหาจำนวนสับเซต (Subset) ทั้งหมดของเซตที่มีสมาชิก n ตัว คือข้อใด?",
+        "options": [
+          "n^2",
+          "2^n",
+          "n!",
+          "2n"
+        ],
+        "answer": "2^n"
+      },
+      {
+        "id": 5,
+        "text": "กำหนดเซต A = {1, 2, 3} และ B = {3, 4, 5} ผลลัพธ์ของการอินเตอร์เซกชัน (A ∩ B) คือข้อใด?",
+        "options": [
+          "{1, 2, 3, 4, 5}",
+          "{1, 2}",
+          "{4, 5}",
+          "{3}"
+        ],
+        "answer": "{3}"
+      },
+      {
+        "id": 6,
+        "text": "ผลลัพธ์ของเซต A - B (Difference) มีความหมายตรงกับข้อใด?",
+        "options": [
+          "สมาชิกที่อยู่ทั้งใน A และ B",
+          "สมาชิกที่อยู่ใน A แต่ไม่อยู่ใน B",
+          "สมาชิกที่อยู่ใน B แต่ไม่อยู่ใน A",
+          "สมาชิกที่ไม่อยู่ทั้งใน A และ B"
+        ],
+        "answer": "สมาชิกที่อยู่ใน A แต่ไม่อยู่ใน B"
+      },
+      {
+        "id": 7,
+        "text": "ประพจน์ที่มีรูปแบบและมีค่าความจริงเป็น 'จริง' เสมอในทุกกรณี เรียกว่าอะไร?",
+        "options": [
+          "Contradiction (ข้อขัดแย้ง)",
+          "Tautology (สัจนิรันดร์)",
+          "Contingency (ประพจน์ทั่วไป)",
+          "Equivalence (ความสมมูล)"
+        ],
+        "answer": "Tautology (สัจนิรันดร์)"
+      },
+      {
+        "id": 8,
+        "text": "ความสัมพันธ์สมมูล (Equivalence Relation) ต้องประกอบด้วยคุณสมบัติ 3 ข้อใด?",
+        "options": [
+          "Reflexive, Symmetric, Transitive",
+          "Reflexive, Antisymmetric, Transitive",
+          "Irreflexive, Symmetric, Transitive",
+          "Reflexive, Symmetric, Intransitive"
+        ],
+        "answer": "Reflexive, Symmetric, Transitive"
+      },
+      {
+        "id": 9,
+        "text": "ฟังก์ชันแบบ 1-1 (One-to-One Function) มีชื่อเรียกทางคณิตศาสตร์อีกชื่อหนึ่งว่าอะไร?",
+        "options": [
+          "Surjective",
+          "Bijective",
+          "Injective",
+          "Reflexive"
+        ],
+        "answer": "Injective"
+      },
+      {
+        "id": 10,
+        "text": "กฎเดอมอร์แกน (De Morgan's Laws) ในข้อใดถูกต้อง?",
+        "options": [
+          "~(p ∨ q) ≡ ~p ∨ ~q",
+          "~(p ∧ q) ≡ ~p ∨ ~q",
+          "~(p ∧ q) ≡ ~p ∧ ~q",
+          "~(p -> q) ≡ ~p -> ~q"
+        ],
+        "answer": "~(p ∧ q) ≡ ~p ∨ ~q"
+      },
+      {
+        "id": 11,
+        "text": "การจัดเรียงสิ่งของ n ชิ้นที่แตกต่างกันทั้งหมดในแนวเส้นตรง จะมีวิธีการจัดเรียงได้กี่วิธี?",
+        "options": [
+          "n^2",
+          "2^n",
+          "n!",
+          "n(n-1)"
+        ],
+        "answer": "n!"
+      },
+      {
+        "id": 12,
+        "text": "หากต้องการเลือกสิ่งของ r ชิ้น จากสิ่งของทั้งหมด n ชิ้น โดย 'ไม่สนใจลำดับ' ในการเลือก ต้องใช้หลักการใด?",
+        "options": [
+          "Permutation (P(n,r))",
+          "Combination (C(n,r))",
+          "Factorial",
+          "Pigeonhole Principle"
+        ],
+        "answer": "Combination (C(n,r))"
+      },
+      {
+        "id": 13,
+        "text": "ทฤษฎีรังนกพิราบ (Pigeonhole Principle) กล่าวไว้ว่า หากนำนก n+1 ตัว ใส่ในรัง n รัง จะเกิดเหตุการณ์ใดขึ้นเสมอ?",
+        "options": [
+          "นกทุกตัวจะมีรังอยู่ตัวละ 1 รังพอดี",
+          "จะมีรังว่างอย่างน้อย 1 รัง",
+          "ต้องมีอย่างน้อย 1 รัง ที่มีนกตั้งแต่ 2 ตัวขึ้นไป",
+          "จะมีนก 1 ตัวที่ไม่มีรังอยู่"
+        ],
+        "answer": "ต้องมีอย่างน้อย 1 รัง ที่มีนกตั้งแต่ 2 ตัวขึ้นไป"
+      },
+      {
+        "id": 14,
+        "text": "ทฤษฎีบทในทฤษฎีกราฟ (Handshaking Lemma) กล่าวว่า ผลรวมของดีกรี (Degree) ของจุดยอดทั้งหมดในกราฟมีค่าเท่ากับเท่าใด?",
+        "options": [
+          "จำนวนเส้นเชื่อม (Edge)",
+          "2 เท่าของจำนวนเส้นเชื่อม",
+          "จำนวนจุดยอด (Vertex) ยกกำลังสอง",
+          "ครึ่งหนึ่งของจำนวนเส้นเชื่อม"
+        ],
+        "answer": "2 เท่าของจำนวนเส้นเชื่อม"
+      },
+      {
+        "id": 15,
+        "text": "ในทฤษฎีกราฟ กราฟที่เชื่อมโยงกัน (Connected) และไม่มีวัฏจักร (Acyclic) เลย เรียกว่าอะไร?",
+        "options": [
+          "Bipartite Graph",
+          "Complete Graph",
+          "Tree",
+          "Cycle Graph"
+        ],
+        "answer": "Tree"
+      },
+      {
+        "id": 16,
+        "text": "เมทริกซ์ประชิด (Adjacency Matrix) ของกราฟแบบไม่มีทิศทาง (Undirected Graph) จะมีคุณสมบัติพิเศษใดเสมอ?",
+        "options": [
+          "เป็นเมทริกซ์เอกฐาน (Singular Matrix)",
+          "เป็นเมทริกซ์ทแยงมุม (Diagonal Matrix)",
+          "เป็นเมทริกซ์สมมาตร (Symmetric Matrix)",
+          "เป็นเมทริกซ์ศูนย์ (Zero Matrix)"
+        ],
+        "answer": "เป็นเมทริกซ์สมมาตร (Symmetric Matrix)"
+      },
+      {
+        "id": 17,
+        "text": "การพิสูจน์ทางคณิตศาสตร์โดยสมมติให้ผลที่ต้องการพิสูจน์เป็น 'เท็จ' แล้วใช้เหตุผลอ้างอิงจนพบข้อขัดแย้ง เรียกว่าการพิสูจน์แบบใด?",
+        "options": [
+          "Direct Proof",
+          "Proof by Induction",
+          "Proof by Contrapositive",
+          "Proof by Contradiction"
+        ],
+        "answer": "Proof by Contradiction"
+      },
+      {
+        "id": 18,
+        "text": "ผลลัพธ์ของ 25 mod 7 (การหารเอาเศษในทฤษฎีจำนวน) คือข้อใด?",
+        "options": [
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "answer": "4"
+      },
+      {
+        "id": 19,
+        "text": "สัญลักษณ์ใดในทางตรรกศาสตร์ที่แทนคำว่า 'ก็ต่อเมื่อ' (Biconditional)?",
+        "options": [
+          "->",
+          "<->",
+          "=>",
+          "=="
+        ],
+        "answer": "<->"
+      },
+      {
+        "id": 20,
+        "text": "กราฟสมบูรณ์ (Complete Graph) K_n ที่มีจุดยอด n จุด จะมีจำนวนเส้นเชื่อม (Edge) ทั้งหมดเท่าใด?",
+        "options": [
+          "n",
+          "n-1",
+          "n(n-1)/2",
+          "n^2"
+        ],
+        "answer": "n(n-1)/2"
+      }
+    ]
+  },
+  {
+    "SubjectName": "Computer Architecture",
+    "Time": 12,
+    "question": [
+      {
+        "id": 1,
+        "text": "สถาปัตยกรรมคอมพิวเตอร์แบบใดที่มีการแยกหน่วยความจำสำหรับเก็บคำสั่ง (Instruction) และข้อมูล (Data) ออกจากกันอย่างชัดเจน?",
+        "options": [
+          "Von Neumann Architecture",
+          "Harvard Architecture",
+          "Turing Architecture",
+          "ARM Architecture"
+        ],
+        "answer": "Harvard Architecture"
+      },
+      {
+        "id": 2,
+        "text": "แนวคิดสถาปัตยกรรมคอมพิวเตอร์พื้นฐานที่ใช้กันอย่างแพร่หลายในปัจจุบัน ซึ่งเก็บข้อมูลและคำสั่งไว้ในหน่วยความจำ (Memory) เดียวกันเรียกว่าอะไร?",
+        "options": [
+          "Harvard Architecture",
+          "RISC Architecture",
+          "Von Neumann Architecture",
+          "Quantum Architecture"
+        ],
+        "answer": "Von Neumann Architecture"
+      },
+      {
+        "id": 3,
+        "text": "หน่วยประมวลผลกลาง (CPU) ประกอบด้วยส่วนประกอบหลักตามข้อใด?",
+        "options": [
+          "RAM, ROM, Cache",
+          "Input, Output, Storage",
+          "ALU, CU, Registers",
+          "Bus, Clock, Core"
+        ],
+        "answer": "ALU, CU, Registers"
+      },
+      {
+        "id": 4,
+        "text": "รีจิสเตอร์ (Register) ใดทำหน้าที่เก็บตำแหน่ง (Address) ของคำสั่งถัดไปที่จะถูกประมวลผล?",
+        "options": [
+          "Instruction Register (IR)",
+          "Memory Address Register (MAR)",
+          "Accumulator (ACC)",
+          "Program Counter (PC)"
+        ],
+        "answer": "Program Counter (PC)"
+      },
+      {
+        "id": 5,
+        "text": "รีจิสเตอร์ใดทำหน้าที่เก็บคำสั่ง (Instruction) ที่กำลังถูกถอดรหัสและประมวลผลอยู่ในปัจจุบัน?",
+        "options": [
+          "Program Counter (PC)",
+          "Instruction Register (IR)",
+          "Memory Data Register (MDR)",
+          "Stack Pointer (SP)"
+        ],
+        "answer": "Instruction Register (IR)"
+      },
+      {
+        "id": 6,
+        "text": "วงจร (Cycle) พื้นฐานของการประมวลผลคำสั่งของ CPU คือข้อใด?",
+        "options": [
+          "Read, Write, Execute",
+          "Load, Store, Branch",
+          "Fetch, Decode, Execute",
+          "Input, Process, Output"
+        ],
+        "answer": "Fetch, Decode, Execute"
+      },
+      {
+        "id": 7,
+        "text": "ข้อใดคือหน่วยความจำที่ทำงานเร็วที่สุดและอยู่ใกล้กับหน่วยประมวลผลมากที่สุดในระบบคอมพิวเตอร์?",
+        "options": [
+          "Main Memory (RAM)",
+          "Cache Memory",
+          "Secondary Storage",
+          "Register"
+        ],
+        "answer": "Register"
+      },
+      {
+        "id": 8,
+        "text": "Cache Memory นำหลักการใดมาใช้เพื่อดึงข้อมูลล่วงหน้าและเพิ่มความเร็วในการเข้าถึงข้อมูลให้ CPU?",
+        "options": [
+          "Virtual Memory",
+          "Locality of Reference",
+          "Pipelining",
+          "Parallel Processing"
+        ],
+        "answer": "Locality of Reference"
+      },
+      {
+        "id": 9,
+        "text": "เทคนิคที่ช่วยให้ CPU สามารถทำงานหลายๆ คำสั่งซ้อนทับกัน (Overlapping) ในเวลาเดียวกันเพื่อเพิ่ม Throughput โดยรวม เรียกว่าอะไร?",
+        "options": [
+          "Multithreading",
+          "Hyperthreading",
+          "Pipelining",
+          "Multitasking"
+        ],
+        "answer": "Pipelining"
+      },
+      {
+        "id": 10,
+        "text": "ปัญหาหรือเงื่อนไขที่ทำให้การทำงานแบบ Pipeline ต้องหยุดชะงัก (Stall) เรียกว่าอะไร?",
+        "options": [
+          "Pipeline Fault",
+          "Pipeline Miss",
+          "Pipeline Error",
+          "Pipeline Hazard"
+        ],
+        "answer": "Pipeline Hazard"
+      },
+      {
+        "id": 11,
+        "text": "สถาปัตยกรรมชุดคำสั่ง (ISA) แบบใดที่เน้นคำสั่งพื้นฐานจำนวนน้อย เรียบง่าย และส่วนใหญ่ทำงานเสร็จใน 1 ไซเคิล?",
+        "options": [
+          "CISC",
+          "VLIW",
+          "RISC",
+          "SIMD"
+        ],
+        "answer": "RISC"
+      },
+      {
+        "id": 12,
+        "text": "สถาปัตยกรรมชุดคำสั่งแบบ CISC (Complex Instruction Set Computer) มีลักษณะเด่นอย่างไร?",
+        "options": [
+          "เน้นคำสั่งพื้นฐานจำนวนน้อย",
+          "มีคำสั่งที่ซับซ้อนจำนวนมาก และหนึ่งคำสั่งอาจใช้เวลาหลายไซเคิล",
+          "ทุกคำสั่งมีความยาว (Instruction Length) เท่ากันทั้งหมด",
+          "ไม่มีการใช้งานหน่วยความจำ Cache"
+        ],
+        "answer": "มีคำสั่งที่ซับซ้อนจำนวนมาก และหนึ่งคำสั่งอาจใช้เวลาหลายไซเคิล"
+      },
+      {
+        "id": 13,
+        "text": "บัส (Bus) ประเภทใดมีหน้าที่ส่งตำแหน่งอ้างอิงของข้อมูลหรือคำสั่งในหน่วยความจำ?",
+        "options": [
+          "Data Bus",
+          "Control Bus",
+          "System Bus",
+          "Address Bus"
+        ],
+        "answer": "Address Bus"
+      },
+      {
+        "id": 14,
+        "text": "การทำงานของระบบที่ CPU ต้องคอยวนตรวจสอบสถานะของอุปกรณ์ I/O อยู่ตลอดเวลาว่าพร้อมทำงานหรือไม่ เรียกว่าอะไร?",
+        "options": [
+          "Interrupt-driven I/O",
+          "Direct Memory Access (DMA)",
+          "Programmed I/O (Polling)",
+          "Virtual I/O"
+        ],
+        "answer": "Programmed I/O (Polling)"
+      },
+      {
+        "id": 15,
+        "text": "เทคนิคใดที่อนุญาตให้อุปกรณ์ I/O สามารถถ่ายโอนข้อมูลความเร็วสูงกับหน่วยความจำหลักได้โดยตรง โดยไม่ต้องผ่าน CPU?",
+        "options": [
+          "DMA (Direct Memory Access)",
+          "Interrupt",
+          "Spooling",
+          "Programmed I/O"
+        ],
+        "answer": "DMA (Direct Memory Access)"
+      },
+      {
+        "id": 16,
+        "text": "สัญญาณใดที่อุปกรณ์ภายนอกหรือฮาร์ดแวร์ส่งให้ CPU เพื่อขอให้หยุดการทำงานปัจจุบันชั่วคราวแล้วมาบริการอุปกรณ์นั้นๆ?",
+        "options": [
+          "Acknowledge",
+          "Trap",
+          "Exception",
+          "Interrupt"
+        ],
+        "answer": "Interrupt"
+      },
+      {
+        "id": 17,
+        "text": "ความกว้างของเส้นทาง Address Bus (เช่น 32-bit หรือ 64-bit) ส่งผลโดยตรงต่อสิ่งใดของระบบคอมพิวเตอร์?",
+        "options": [
+          "ความเร็วในการประมวลผลของ CPU (Clock Speed)",
+          "ขนาดของหน่วยความจำหลักสูงสุด (Max RAM) ที่ CPU สามารถอ้างถึงได้",
+          "จำนวนอุปกรณ์ I/O ที่สามารถเชื่อมต่อได้",
+          "ขนาดของชุดคำสั่ง (Instruction Size)"
+        ],
+        "answer": "ขนาดของหน่วยความจำหลักสูงสุด (Max RAM) ที่ CPU สามารถอ้างถึงได้"
+      },
+      {
+        "id": 18,
+        "text": "การจัดเก็บข้อมูลในหน่วยความจำแบบที่เก็บไบต์ที่มีนัยสำคัญสูงสุด (Most Significant Byte) ไว้ในตำแหน่งแอดเดรส (Address) ตัวเลขต่ำสุด เรียกว่าแบบใด?",
+        "options": [
+          "Little-Endian",
+          "Mid-Endian",
+          "Big-Endian",
+          "Word-Aligned"
+        ],
+        "answer": "Big-Endian"
+      },
+      {
+        "id": 19,
+        "text": "ข้อใดคือหน่วยวัดความเร็วการทำงานของสัญญาณนาฬิกาของ CPU ที่บอกถึงจำนวนรอบการทำงานใน 1 วินาที?",
+        "options": [
+          "MIPS",
+          "FLOPS",
+          "Bandwidth",
+          "Clock Speed (Hz)"
+        ],
+        "answer": "Clock Speed (Hz)"
+      },
+      {
+        "id": 20,
+        "text": "กฎของมัวร์ (Moore's Law) กล่าวถึงแนวโน้มทางฮาร์ดแวร์ในเรื่องใด?",
+        "options": [
+          "ความเร็ว CPU จะเพิ่มขึ้น 2 เท่าทุกปี",
+          "จำนวนทรานซิสเตอร์บนชิปไอซีจะเพิ่มขึ้นเป็น 2 เท่าในทุกๆ 18-24 เดือน",
+          "ขนาดของ RAM จะเพิ่มขึ้น 2 เท่าทุก 18-24 เดือน",
+          "ราคาคอมพิวเตอร์จะลดลงครึ่งหนึ่งทุกปี"
+        ],
+        "answer": "จำนวนทรานซิสเตอร์บนชิปไอซีจะเพิ่มขึ้นเป็น 2 เท่าในทุกๆ 18-24 เดือน"
+      }
+    ]
+  },
+  {
+    "SubjectName": "Operating Systems",
+    "Time": 12,
+    "question": [
+      {
+        "id": 1,
+        "text": "ระบบปฏิบัติการ (OS) จัดเป็นซอฟต์แวร์ประเภทใด?",
+        "options": [
+          "Application Software",
+          "System Software",
+          "Utility Software",
+          "Firmware"
+        ],
+        "answer": "System Software"
+      },
+      {
+        "id": 2,
+        "text": "ส่วนแกนกลาง (Core) ของระบบปฏิบัติการที่ทำหน้าที่ควบคุมฮาร์ดแวร์โดยตรงเรียกว่าอะไร?",
+        "options": [
+          "Shell",
+          "GUI",
+          "Kernel",
+          "Compiler"
+        ],
+        "answer": "Kernel"
+      },
+      {
+        "id": 3,
+        "text": "โครงสร้างข้อมูลที่ OS ใช้เก็บข้อมูลและสถานะการทำงานของแต่ละโปรเซส (Process) เรียกว่าอะไร?",
+        "options": [
+          "Process Control Block (PCB)",
+          "File Allocation Table (FAT)",
+          "Page Table",
+          "Thread Control Block (TCB)"
+        ],
+        "answer": "Process Control Block (PCB)"
+      },
+      {
+        "id": 4,
+        "text": "เมื่อโปรเซสกำลังรอคอยให้เหตุการณ์บางอย่างเกิดขึ้น (เช่น รอรับข้อมูลจากคีย์บอร์ดหรือดิสก์) โปรเซสจะอยู่ในสถานะใด?",
+        "options": [
+          "Running",
+          "Ready",
+          "Waiting / Blocked",
+          "Terminated"
+        ],
+        "answer": "Waiting / Blocked"
+      },
+      {
+        "id": 5,
+        "text": "อัลกอริทึมการจัดตารางเวลา CPU (CPU Scheduling) แบบใดที่แบ่งเวลา (Time Quantum) ให้แต่ละโปรเซสเท่าๆ กันแบบวนรอบ?",
+        "options": [
+          "First-Come, First-Served (FCFS)",
+          "Shortest Job First (SJF)",
+          "Priority Scheduling",
+          "Round Robin (RR)"
+        ],
+        "answer": "Round Robin (RR)"
+      },
+      {
+        "id": 6,
+        "text": "กระบวนการสลับการทำงานของ CPU จากโปรเซสหนึ่งไปยังอีกโปรเซสหนึ่ง โดยต้องบันทึกสถานะเดิมและโหลดสถานะใหม่ เรียกว่าอะไร?",
+        "options": [
+          "Context Switch",
+          "Paging",
+          "Swapping",
+          "Interrupt"
+        ],
+        "answer": "Context Switch"
+      },
+      {
+        "id": 7,
+        "text": "ภาวะที่โปรเซสตั้งแต่ 2 ตัวขึ้นไปต่างก็รอคอยทรัพยากรที่อีกฝ่ายถือครองอยู่ จนไม่มีโปรเซสใดสามารถทำงานต่อไปได้เลย เรียกว่าอะไร?",
+        "options": [
+          "Starvation",
+          "Deadlock",
+          "Race Condition",
+          "Mutual Exclusion"
+        ],
+        "answer": "Deadlock"
+      },
+      {
+        "id": 8,
+        "text": "ข้อใดคือสภาวะเงื่อนไข 4 ประการที่ทำให้เกิด Deadlock (ต้องเกิดขึ้นพร้อมกันทั้ง 4 ข้อ)?",
+        "options": [
+          "Mutual Exclusion, Hold and Wait, Preemption, Circular Wait",
+          "Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait",
+          "Shared Memory, Hold and Wait, No Preemption, Circular Wait",
+          "Mutual Exclusion, No Hold and Wait, No Preemption, Circular Wait"
+        ],
+        "answer": "Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait"
+      },
+      {
+        "id": 9,
+        "text": "อัลกอริทึมของนายธนาคาร (Banker's Algorithm) ถูกนำมาใช้เพื่อจุดประสงค์ใดในระบบปฏิบัติการ?",
+        "options": [
+          "Deadlock Prevention",
+          "Deadlock Avoidance",
+          "Deadlock Detection",
+          "Deadlock Recovery"
+        ],
+        "answer": "Deadlock Avoidance"
+      },
+      {
+        "id": 10,
+        "text": "การจัดการหน่วยความจำแบบใดที่แบ่งหน่วยความจำทางตรรกะ (Logical Memory) ของโปรเซสออกเป็นบล็อกขนาดเท่าๆ กัน?",
+        "options": [
+          "Segmentation",
+          "Paging",
+          "Contiguous Allocation",
+          "Swapping"
+        ],
+        "answer": "Paging"
+      },
+      {
+        "id": 11,
+        "text": "ปัญหาพื้นที่ว่างในหน่วยความจำกระจัดกระจายจนไม่สามารถจัดสรรให้โปรเซสใหม่ที่ต้องการพื้นที่ขนาดใหญ่ติดต่อกันได้ เรียกว่าอะไร?",
+        "options": [
+          "Compaction",
+          "Starvation",
+          "Fragmentation",
+          "Thrashing"
+        ],
+        "answer": "Fragmentation"
+      },
+      {
+        "id": 12,
+        "text": "เทคนิคที่อนุญาตให้โปรแกรมขนาดใหญ่กว่าหน่วยความจำหลัก (RAM) สามารถทำงานได้ โดยจำลองพื้นที่ฮาร์ดดิสก์มาช่วย เรียกว่าอะไร?",
+        "options": [
+          "Cache Memory",
+          "Virtual Memory",
+          "Flash Memory",
+          "Shared Memory"
+        ],
+        "answer": "Virtual Memory"
+      },
+      {
+        "id": 13,
+        "text": "ปรากฏการณ์ที่ระบบใช้เวลาส่วนใหญ่ไปกับการสลับหน้าข้อมูลเข้า-ออก (Page Fault) มากกว่าการประมวลผลโปรเซสจริงๆ จนระบบช้าลงอย่างมาก เรียกว่าอะไร?",
+        "options": [
+          "Starvation",
+          "Thrashing",
+          "Deadlock",
+          "Interrupt Storm"
+        ],
+        "answer": "Thrashing"
+      },
+      {
+        "id": 14,
+        "text": "ส่วนของโค้ดในโปรแกรมที่มีการเข้าถึงและปรับปรุงแก้ไขข้อมูลที่ใช้งานร่วมกัน (Shared Data) ซึ่งอาจทำให้เกิดความผิดพลาดได้หากมีหลายโปรเซสเข้าถึงพร้อมกัน เรียกว่าอะไร?",
+        "options": [
+          "Safe State",
+          "Critical Section",
+          "Dead Zone",
+          "Atomic Block"
+        ],
+        "answer": "Critical Section"
+      },
+      {
+        "id": 15,
+        "text": "กลไกหรือตัวแปรพิเศษที่ใช้สำหรับควบคุมการเข้าถึงทรัพยากรที่ใช้ร่วมกัน เพื่อป้องกันปัญหา Race Condition เรียกว่าอะไร?",
+        "options": [
+          "Semaphore",
+          "Monitor",
+          "Signal",
+          "Flag"
+        ],
+        "answer": "Semaphore"
+      },
+      {
+        "id": 16,
+        "text": "หน่วยย่อยที่สุดของการประมวลผลภายในโปรเซส ซึ่งสามารถแชร์ทรัพยากร (เช่น หน่วยความจำ) ร่วมกันและทำงานคู่ขนานกันได้ เรียกว่าอะไร?",
+        "options": [
+          "Task",
+          "Job",
+          "Thread",
+          "Fiber"
+        ],
+        "answer": "Thread"
+      },
+      {
+        "id": 17,
+        "text": "ในระบบปฏิบัติการตระกูล Unix/Linux System Call ใดใช้สำหรับสร้างโปรเซสลูก (Child Process) ใหม่?",
+        "options": [
+          "exec()",
+          "fork()",
+          "spawn()",
+          "create()"
+        ],
+        "answer": "fork()"
+      },
+      {
+        "id": 18,
+        "text": "อัลกอริทึม Page Replacement แบบใดที่เลือกแทนที่เพจ (Page) ที่ไม่ได้ถูกเรียกใช้งานมาเป็นระยะเวลานานที่สุดในอดีต?",
+        "options": [
+          "FIFO (First-In, First-Out)",
+          "Optimal",
+          "LRU (Least Recently Used)",
+          "LFU (Least Frequently Used)"
+        ],
+        "answer": "LRU (Least Recently Used)"
+      },
+      {
+        "id": 19,
+        "text": "ไดเรกทอรีราก (Root Directory) สูงสุดในระบบโครงสร้างไฟล์ของ Unix/Linux ใช้สัญลักษณ์ใด?",
+        "options": [
+          "C:\\",
+          "~",
+          "/",
+          "//"
+        ],
+        "answer": "/"
+      },
+      {
+        "id": 20,
+        "text": "เทคนิค Spooling (เช่น Print Spooling) ที่รับงานมาพักไว้ก่อนส่งให้อุปกรณ์ทำงาน มีหลักการทำงานคล้ายกับโครงสร้างข้อมูลใดมากที่สุด?",
+        "options": [
+          "Stack",
+          "Queue",
+          "Tree",
+          "Graph"
+        ],
+        "answer": "Queue"
+      }
+    ]
+  },
+  {
+    "SubjectName": "Computer Networks",
+    "Time": 12,
+    "question": [
+      {
+        "id": 1,
+        "text": "เครือข่ายที่ครอบคลุมพื้นที่ขนาดเล็ก เช่น ภายในห้อง อาคาร หรือสำนักงานเดียวกัน เรียกว่าอะไร?",
+        "options": [
+          "WAN (Wide Area Network)",
+          "MAN (Metropolitan Area Network)",
+          "LAN (Local Area Network)",
+          "PAN (Personal Area Network)"
+        ],
+        "answer": "LAN (Local Area Network)"
+      },
+      {
+        "id": 2,
+        "text": "สถาปัตยกรรมเครือข่ายอ้างอิง OSI Model (Open Systems Interconnection Model) มีทั้งหมดกี่เลเยอร์ (Layer)?",
+        "options": [
+          "4 เลเยอร์",
+          "5 เลเยอร์",
+          "7 เลเยอร์",
+          "9 เลเยอร์"
+        ],
+        "answer": "7 เลเยอร์"
+      },
+      {
+        "id": 3,
+        "text": "เลเยอร์ต่ำสุด (Layer 1) ของ OSI Model ซึ่งจัดการกับการส่งสัญญาณไฟฟ้าหรือแสงผ่านสื่อกลางคือเลเยอร์ใด?",
+        "options": [
+          "Data Link Layer",
+          "Physical Layer",
+          "Network Layer",
+          "Transport Layer"
+        ],
+        "answer": "Physical Layer"
+      },
+      {
+        "id": 4,
+        "text": "อุปกรณ์เครือข่าย 'Switch' โดยทั่วไปทำงานอยู่ที่เลเยอร์ใดของ OSI Model?",
+        "options": [
+          "Layer 1 (Physical)",
+          "Layer 2 (Data Link)",
+          "Layer 3 (Network)",
+          "Layer 4 (Transport)"
+        ],
+        "answer": "Layer 2 (Data Link)"
+      },
+      {
+        "id": 5,
+        "text": "อุปกรณ์ 'Router' ทำหน้าที่หาเส้นทาง (Routing) ให้กับข้อมูล โดยอ้างอิงจากหมายเลข IP Address อุปกรณ์นี้ทำงานที่เลเยอร์ใด?",
+        "options": [
+          "Layer 2 (Data Link)",
+          "Layer 3 (Network)",
+          "Layer 4 (Transport)",
+          "Layer 7 (Application)"
+        ],
+        "answer": "Layer 3 (Network)"
+      },
+      {
+        "id": 6,
+        "text": "ที่อยู่ทางกายภาพ (Physical Address) ของอุปกรณ์เครือข่ายที่ฝังมากับการ์ด LAN (NIC) ซึ่งไม่สามารถเปลี่ยนได้ เรียกว่าอะไร?",
+        "options": [
+          "IP Address",
+          "Port Number",
+          "MAC Address",
+          "Socket Address"
+        ],
+        "answer": "MAC Address"
+      },
+      {
+        "id": 7,
+        "text": "IP Address เวอร์ชัน 4 (IPv4) มีขนาดความยาวกี่บิต?",
+        "options": [
+          "16 บิต",
+          "32 บิต",
+          "64 บิต",
+          "128 บิต"
+        ],
+        "answer": "32 บิต"
+      },
+      {
+        "id": 8,
+        "text": "IP Address เวอร์ชัน 6 (IPv6) มีขนาดความยาวกี่บิต เพื่อรองรับจำนวนอุปกรณ์ที่เพิ่มขึ้นมหาศาล?",
+        "options": [
+          "32 บิต",
+          "64 บิต",
+          "128 บิต",
+          "256 บิต"
+        ],
+        "answer": "128 บิต"
+      },
+      {
+        "id": 9,
+        "text": "โปรโตคอลใน Transport Layer ใดที่มีการสร้างการเชื่อมต่อ (Connection-Oriented) และรับประกันการส่งข้อมูลถึงปลายทางอย่างถูกต้อง (Reliable)?",
+        "options": [
+          "UDP",
+          "IP",
+          "TCP",
+          "ICMP"
+        ],
+        "answer": "TCP"
+      },
+      {
+        "id": 10,
+        "text": "โปรโตคอลใน Transport Layer ใดที่ส่งข้อมูลแบบไร้การเชื่อมต่อ (Connectionless) รวดเร็ว แต่ไม่รับประกันว่าข้อมูลจะถึงปลายทาง (Unreliable)?",
+        "options": [
+          "TCP",
+          "IP",
+          "UDP",
+          "ARP"
+        ],
+        "answer": "UDP"
+      },
+      {
+        "id": 11,
+        "text": "พอร์ต (Port) หมายเลขมาตรฐาน 80 ถูกใช้งานโดยโปรโตคอลใด?",
+        "options": [
+          "FTP",
+          "SSH",
+          "HTTP",
+          "DNS"
+        ],
+        "answer": "HTTP"
+      },
+      {
+        "id": 12,
+        "text": "พอร์ต (Port) หมายเลขมาตรฐาน 443 ถูกใช้งานโดยโปรโตคอลใด ซึ่งมีความปลอดภัยในการส่งข้อมูลเว็บไซต์?",
+        "options": [
+          "HTTP",
+          "HTTPS",
+          "SMTP",
+          "Telnet"
+        ],
+        "answer": "HTTPS"
+      },
+      {
+        "id": 13,
+        "text": "โปรโตคอลใดทำหน้าที่แปลงชื่อโดเมน (Domain Name) เช่น www.google.com ให้เป็นหมายเลข IP Address?",
+        "options": [
+          "DHCP",
+          "DNS",
+          "ARP",
+          "NAT"
+        ],
+        "answer": "DNS"
+      },
+      {
+        "id": 14,
+        "text": "โปรโตคอลใดทำหน้าที่แจกจ่ายหมายเลข IP Address ให้กับอุปกรณ์ในเครือข่ายโดยอัตโนมัติ?",
+        "options": [
+          "DHCP",
+          "DNS",
+          "ICMP",
+          "ARP"
+        ],
+        "answer": "DHCP"
+      },
+      {
+        "id": 15,
+        "text": "คำสั่งทางเครือข่ายใดที่ใช้ส่งแพ็กเก็ต ICMP Echo Request ไปยังปลายทางเพื่อทดสอบการเชื่อมต่อว่าอุปกรณ์นั้นออนไลน์อยู่หรือไม่?",
+        "options": [
+          "tracert / traceroute",
+          "ipconfig / ifconfig",
+          "ping",
+          "netstat"
+        ],
+        "answer": "ping"
+      },
+      {
+        "id": 16,
+        "text": "กระบวนการแปลง IP Address แบบ Private ภายในองค์กร ให้เป็น IP Address แบบ Public เพื่อออกสู่อินเทอร์เน็ต เรียกว่าอะไร?",
+        "options": [
+          "Routing",
+          "Switching",
+          "Subnetting",
+          "NAT (Network Address Translation)"
+        ],
+        "answer": "NAT (Network Address Translation)"
+      },
+      {
+        "id": 17,
+        "text": "โทโพโลยี (Topology) ของเครือข่ายแบบใดที่อุปกรณ์ทุกตัวเชื่อมต่อเข้ากับอุปกรณ์ศูนย์กลาง (เช่น Switch) เพียงจุดเดียว?",
+        "options": [
+          "Bus Topology",
+          "Ring Topology",
+          "Star Topology",
+          "Mesh Topology"
+        ],
+        "answer": "Star Topology"
+      },
+      {
+        "id": 18,
+        "text": "การโจมตีทางไซเบอร์ที่ส่งคำร้องขอ (Requests) จำนวนมหาศาลไปยังเซิร์ฟเวอร์เป้าหมายจากหลายๆ เครื่องพร้อมกัน จนเซิร์ฟเวอร์ล่ม เรียกว่าอะไร?",
+        "options": [
+          "Phishing",
+          "Man-in-the-Middle",
+          "DDoS (Distributed Denial of Service)",
+          "SQL Injection"
+        ],
+        "answer": "DDoS (Distributed Denial of Service)"
+      },
+      {
+        "id": 19,
+        "text": "ข้อใดคือช่วง (Range) ของ Private IP Address Class C ที่มักใช้ในเครือข่าย LAN ทั่วไปตามบ้านเรือน?",
+        "options": [
+          "10.0.0.0 - 10.255.255.255",
+          "172.16.0.0 - 172.31.255.255",
+          "192.168.0.0 - 192.168.255.255",
+          "127.0.0.0 - 127.255.255.255"
+        ],
+        "answer": "192.168.0.0 - 192.168.255.255"
+      },
+      {
+        "id": 20,
+        "text": "สายเคเบิลเครือข่ายประเภทใดที่ใช้แสงในการส่งสัญญาณข้อมูล ทำให้ส่งข้อมูลได้เร็วและไกลมากที่สุด?",
+        "options": [
+          "Coaxial Cable",
+          "Twisted Pair (UTP/STP)",
+          "Fiber Optic Cable",
+          "HDMI Cable"
+        ],
+        "answer": "Fiber Optic Cable"
+      }
+    ]
+  },
+  {
+    "SubjectName": "Database Systems",
+    "Time": 12,
+    "question": [
+      {
+        "id": 1,
+        "text": "ข้อใดคือความหมายของ DBMS?",
+        "options": [
+          "Database Basic Management System",
+          "Database Behavior Monitoring System",
+          "Database Building Management System",
+          "Database Management System"
+        ],
+        "answer": "Database Management System"
+      },
+      {
+        "id": 2,
+        "text": "คีย์ (Key) ใดที่มีคุณสมบัติเป็นค่าเอกลักษณ์ (Unique) และถูกเลือกมาเพื่อใช้ระบุแถวข้อมูลในตารางเพียงหนึ่งเดียว?",
+        "options": [
+          "Foreign Key",
+          "Primary Key",
+          "Composite Key",
+          "Candidate Key"
+        ],
+        "answer": "Primary Key"
+      },
+      {
+        "id": 3,
+        "text": "คีย์ (Key) ที่ใช้ในการเชื่อมโยงข้อมูลระหว่างสองตาราง โดยอ้างอิงไปยัง Primary Key ของอีกตารางหนึ่งเรียกว่าอะไร?",
+        "options": [
+          "Foreign Key",
+          "Unique Key",
+          "Super Key",
+          "Alternate Key"
+        ],
+        "answer": "Foreign Key"
+      },
+      {
+        "id": 4,
+        "text": "ในโมเดล E-R (Entity-Relationship) สัญลักษณ์ 'รูปสี่เหลี่ยมผืนผ้า' ใช้แทนสิ่งใด?",
+        "options": [
+          "Attribute",
+          "Relationship",
+          "Entity",
+          "Weak Entity"
+        ],
+        "answer": "Entity"
+      },
+      {
+        "id": 5,
+        "text": "ภาษามาตรฐานที่ใช้ในการเรียกดูและจัดการข้อมูลในฐานข้อมูลเชิงสัมพันธ์คือภาษาใด?",
+        "options": [
+          "HTML",
+          "SQL",
+          "XML",
+          "PHP"
+        ],
+        "answer": "SQL"
+      },
+      {
+        "id": 6,
+        "text": "คำสั่ง SQL ในกลุ่ม DDL (Data Definition Language) คือข้อใด?",
+        "options": [
+          "SELECT",
+          "INSERT",
+          "UPDATE",
+          "CREATE"
+        ],
+        "answer": "CREATE"
+      },
+      {
+        "id": 7,
+        "text": "คำสั่ง SQL ใดใช้สำหรับเพิ่มข้อมูลใหม่ลงในตาราง?",
+        "options": [
+          "ADD",
+          "INSERT INTO",
+          "UPDATE",
+          "CREATE"
+        ],
+        "answer": "INSERT INTO"
+      },
+      {
+        "id": 8,
+        "text": "คำสั่ง SQL ใดใช้สำหรับลบแถวข้อมูลออกจากตารางตามเงื่อนไขที่กำหนด?",
+        "options": [
+          "DROP",
+          "DELETE",
+          "REMOVE",
+          "TRUNCATE"
+        ],
+        "answer": "DELETE"
+      },
+      {
+        "id": 9,
+        "text": "คำสั่ง SQL ใดใช้ในการกรองข้อมูลที่ต้องการค้นหาตามเงื่อนไข?",
+        "options": [
+          "GROUP BY",
+          "ORDER BY",
+          "WHERE",
+          "HAVING"
+        ],
+        "answer": "WHERE"
+      },
+      {
+        "id": 10,
+        "text": "หากต้องการเรียงลำดับข้อมูลจากมากไปหาน้อย ต้องระบุ Keyword ใดต่อท้ายคำสั่ง ORDER BY?",
+        "options": [
+          "ASC",
+          "DESC",
+          "TOP",
+          "DOWN"
+        ],
+        "answer": "DESC"
+      },
+      {
+        "id": 11,
+        "text": "การทำ Normalization มีจุดประสงค์หลักเพื่ออะไร?",
+        "options": [
+          "เพื่อเพิ่มความเร็วในการดึงข้อมูล",
+          "เพื่อลดความซ้ำซ้อนของข้อมูล (Data Redundancy)",
+          "เพื่อสำรองข้อมูล",
+          "เพื่อกำหนดสิทธิ์ผู้ใช้งาน"
+        ],
+        "answer": "เพื่อลดความซ้ำซ้อนของข้อมูล (Data Redundancy)"
+      },
+      {
+        "id": 12,
+        "text": "กฎที่ระบุว่า 'ทุกๆ แอตทริบิวต์ในแถวต้องเก็บค่าที่เป็นปรมาณู (Atomic Value) หรือค่าเดียว' คือเงื่อนไขของ Normal Form ใด?",
+        "options": [
+          "1NF",
+          "2NF",
+          "3NF",
+          "BCNF"
+        ],
+        "answer": "1NF"
+      },
+      {
+        "id": 13,
+        "text": "ความสัมพันธ์แบบหนึ่งต่อกลุ่ม (One-to-Many) มักแทนด้วยสัญลักษณ์ใดในแผนภาพฐานข้อมูล?",
+        "options": [
+          "1:1",
+          "1:N",
+          "M:N",
+          "N:N"
+        ],
+        "answer": "1:N"
+      },
+      {
+        "id": 14,
+        "text": "คุณสมบัติ ACID ของ Transaction ประกอบด้วย Atomicity, Consistency, Isolation และอะไร?",
+        "options": [
+          "Dependency",
+          "Durability",
+          "Data",
+          "Definition"
+        ],
+        "answer": "Durability"
+      },
+      {
+        "id": 15,
+        "text": "คำสั่ง SQL ใดใช้เพื่อรวมข้อมูลจากหลายตารางเข้าด้วยกันโดยหาค่าที่ตรงกัน?",
+        "options": [
+          "UNION",
+          "GROUP BY",
+          "JOIN",
+          "CONNECT"
+        ],
+        "answer": "JOIN"
+      },
+      {
+        "id": 16,
+        "text": "ฟังก์ชัน SQL ใดใช้สำหรับนับจำนวนแถวทั้งหมดที่ตรงตามเงื่อนไข?",
+        "options": [
+          "SUM()",
+          "COUNT()",
+          "AVG()",
+          "TOTAL()"
+        ],
+        "answer": "COUNT()"
+      },
+      {
+        "id": 17,
+        "text": "ฐานข้อมูลประเภท NoSQL เหมาะสมกับงานประเภทใดมากที่สุด?",
+        "options": [
+          "ข้อมูลที่มีโครงสร้างตายตัวแน่นอน",
+          "ข้อมูลขนาดใหญ่มากที่มีโครงสร้างไม่แน่นอน (Unstructured Data)",
+          "งานธุรกรรมทางการเงินที่ต้องการความแม่นยำสูงมาก",
+          "ฐานข้อมูลขนาดเล็กในเครื่องพีซี"
+        ],
+        "answer": "ข้อมูลขนาดใหญ่มากที่มีโครงสร้างไม่แน่นอน (Unstructured Data)"
+      },
+      {
+        "id": 18,
+        "text": "คำสั่ง SQL ใดใช้สำหรับการลบตารางทั้งหมดออกจากฐานข้อมูล (รวมถึงโครงสร้างด้วย)?",
+        "options": [
+          "DELETE TABLE",
+          "DROP TABLE",
+          "REMOVE TABLE",
+          "TRUNCATE TABLE"
+        ],
+        "answer": "DROP TABLE"
+      },
+      {
+        "id": 19,
+        "text": "Keyword 'DISTINCT' ในคำสั่ง SELECT มีไว้เพื่ออะไร?",
+        "options": [
+          "เพื่อเลือกข้อมูลที่ซ้ำกัน",
+          "เพื่อกรองข้อมูลที่ไม่ซ้ำกันออกมาแสดงผล",
+          "เพื่อเรียงลำดับข้อมูล",
+          "เพื่อเชื่อมตาราง"
+        ],
+        "answer": "เพื่อกรองข้อมูลที่ไม่ซ้ำกันออกมาแสดงผล"
+      },
+      {
+        "id": 20,
+        "text": "ในระบบฐานข้อมูล 'Schema' หมายถึงอะไร?",
+        "options": [
+          "ตัวข้อมูลที่เก็บอยู่ภายในตาราง",
+          "โครงสร้างและนิยามของฐานข้อมูลทั้งหมด",
+          "รหัสผ่านของผู้ดูแลระบบ",
+          "ชื่อของ Database Server"
+        ],
+        "answer": "โครงสร้างและนิยามของฐานข้อมูลทั้งหมด"
+      }
+    ]
+  },
+  {
+    "SubjectName": "Web Development",
+    "Time": 10,
+    "question": [
+      {
+        "id": 1,
+        "text": "HTML ย่อมาจากอะไร?",
+        "options": [
+          "Hyper Text Markup Language",
+          "High Tech Modern Language",
+          "Hyper Tabular Markup Language",
+          "Home Tool Markup Language"
+        ],
+        "answer": "Hyper Text Markup Language"
+      },
+      {
+        "id": 2,
+        "text": "ภาษาใดใช้สำหรับกำหนดรูปแบบและการตกแต่งหน้าตา (Styling) ของเว็บไซต์?",
+        "options": [
+          "HTML",
+          "XML",
+          "CSS",
+          "PHP"
+        ],
+        "answer": "CSS"
+      },
+      {
+        "id": 3,
+        "text": "แท็ก HTML ใดใช้สำหรับสร้างจุดเชื่อมโยง (Hyperlink)?",
+        "options": [
+          "<link>",
+          "<a>",
+          "<href>",
+          "<url>"
+        ],
+        "answer": "<a>"
+      },
+      {
+        "id": 4,
+        "text": "ใน CSS พร็อพเพอร์ตี้ใดใช้สำหรับเปลี่ยนสีพื้นหลังขององค์ประกอบ?",
+        "options": [
+          "color",
+          "bgcolor",
+          "background-color",
+          "fill"
+        ],
+        "answer": "background-color"
+      },
+      {
+        "id": 5,
+        "text": "ใน CSS Box Model ระยะห่างระหว่างเนื้อหา (Content) กับเส้นขอบ (Border) เรียกว่าอะไร?",
+        "options": [
+          "Margin",
+          "Padding",
+          "Spacing",
+          "Gutter"
+        ],
+        "answer": "Padding"
+      },
+      {
+        "id": 6,
+        "text": "ข้อใดคือ HTTP Status Code ที่หมายถึง 'Not Found' (ไม่พบหน้าที่ต้องการ)?",
+        "options": [
+          "200",
+          "403",
+          "404",
+          "500"
+        ],
+        "answer": "404"
+      },
+      {
+        "id": 7,
+        "text": "HTTP Method ใดที่นิยมใช้สำหรับส่งข้อมูลจากฟอร์มเพื่อไป 'สร้าง' ข้อมูลใหม่บนเซิร์ฟเวอร์?",
+        "options": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE"
+        ],
+        "answer": "POST"
+      },
+      {
+        "id": 8,
+        "text": "เทคโนโลยีใดช่วยให้เว็บไซต์สามารถแสดงผลได้เหมาะสมกับทุกขนาดหน้าจอ (Desktop, Tablet, Mobile)?",
+        "options": [
+          "Static Web Design",
+          "Responsive Web Design",
+          "Server-side Rendering",
+          "Deep Learning"
+        ],
+        "answer": "Responsive Web Design"
+      },
+      {
+        "id": 9,
+        "text": "DOM ในการพัฒนาเว็บย่อมาจากอะไร?",
+        "options": [
+          "Data Object Model",
+          "Document Object Model",
+          "Digital Order Model",
+          "Desktop Object Management"
+        ],
+        "answer": "Document Object Model"
+      },
+      {
+        "id": 10,
+        "text": "ภาษาใดจัดเป็นภาษาฝั่ง Server-side Scripting?",
+        "options": [
+          "HTML",
+          "CSS",
+          "PHP",
+          "JSON"
+        ],
+        "answer": "PHP"
+      },
+      {
+        "id": 11,
+        "text": "JavaScript Framework/Library ตัวใดถูกพัฒนาโดย Facebook?",
+        "options": [
+          "Angular",
+          "Vue",
+          "React",
+          "Svelte"
+        ],
+        "answer": "React"
+      },
+      {
+        "id": 12,
+        "text": "CSS Framework ที่ได้รับความนิยมสูงสุดและใช้ระบบ Grid ในการจัด Layout คือข้อใด?",
+        "options": [
+          "Bootstrap",
+          "Laravel",
+          "Django",
+          "Node.js"
+        ],
+        "answer": "Bootstrap"
+      },
+      {
+        "id": 13,
+        "text": "API รูปแบบใดที่สื่อสารผ่าน HTTP และมักแลกเปลี่ยนข้อมูลในรูปแบบ JSON?",
+        "options": [
+          "REST",
+          "SOAP",
+          "GraphQL",
+          "gRPC"
+        ],
+        "answer": "REST"
+      },
+      {
+        "id": 14,
+        "text": "คุกกี้ (Cookie) มีวัตถุประสงค์หลักเพื่ออะไรในเว็บเบราว์เซอร์?",
+        "options": [
+          "เพื่อเพิ่มความเร็วอินเทอร์เน็ต",
+          "เพื่อเก็บข้อมูลสถานะหรือเซสชันของผู้ใช้",
+          "เพื่อป้องกันไวรัส",
+          "เพื่อแสดงโฆษณาเพียงอย่างเดียว"
+        ],
+        "answer": "เพื่อเก็บข้อมูลสถานะหรือเซสชันของผู้ใช้"
+      },
+      {
+        "id": 15,
+        "text": "สถาปัตยกรรมแบบใดที่แยกส่วน Frontend และ Backend ออกจากกันโดยสิ้นเชิงและคุยกันผ่าน API?",
+        "options": [
+          "Monolithic",
+          "Headless / Decoupled",
+          "Centralized",
+          "Peer-to-Peer"
+        ],
+        "answer": "Headless / Decoupled"
+      },
+      {
+        "id": 16,
+        "text": "Keyword ในแท็ก <meta> ข้อใดสำคัญที่สุดสำหรับการทำ SEO (Search Engine Optimization)?",
+        "options": [
+          "viewport",
+          "charset",
+          "description",
+          "author"
+        ],
+        "answer": "description"
+      },
+      {
+        "id": 17,
+        "text": "ใน CSS พร็อพเพอร์ตี้ใดใช้สำหรับจัดตำแหน่งองค์ประกอบให้อยู่กึ่งกลางใน Flexbox (แนวนอน)?",
+        "options": [
+          "align-items",
+          "justify-content",
+          "text-align",
+          "float"
+        ],
+        "answer": "justify-content"
+      },
+      {
+        "id": 18,
+        "text": "โหมดการทำงานแบบ Asynchronous ใน JavaScript ที่ใช้คำสั่ง fetch() จะคืนค่ากลับมาเป็นวัตถุชนิดใด?",
+        "options": [
+          "String",
+          "Boolean",
+          "Promise",
+          "Array"
+        ],
+        "answer": "Promise"
+      },
+      {
+        "id": 19,
+        "text": "HTTPS แตกต่างจาก HTTP อย่างไร?",
+        "options": [
+          "HTTPS เร็วกว่า",
+          "HTTPS มีการเข้ารหัสข้อมูล (Encryption) เพื่อความปลอดภัย",
+          "HTTPS ใช้ได้เฉพาะกับเบราว์เซอร์ Chrome",
+          "HTTPS ไม่ต้องใช้โดเมนเนม"
+        ],
+        "answer": "HTTPS มีการเข้ารหัสข้อมูล (Encryption) เพื่อความปลอดภัย"
+      },
+      {
+        "id": 20,
+        "text": "เครื่องมือใดที่นักพัฒนาใช้สำหรับจัดการเวอร์ชันของซอร์สโค้ด (Version Control)?",
+        "options": [
+          "Docker",
+          "Git",
+          "NPM",
+          "Postman"
+        ],
+        "answer": "Git"
+      }
+    ]
+  },
+  {
+    "SubjectName": "Data Structure",
+    "Time": 15,
+    "question": [
+      {
+        "id": 1,
+        "text": "โครงสร้างข้อมูลใดมีการจองพื้นที่หน่วยความจำแบบต่อเนื่องกัน (Contiguous Memory Allocation)?",
+        "options": [
+          "Linked List",
+          "Tree",
+          "Array",
+          "Graph"
+        ],
+        "answer": "Array"
+      },
+      {
+        "id": 2,
+        "text": "โหนด (Node) พื้นฐานใน Singly Linked List ประกอบด้วยส่วนสำคัญ 2 ส่วนคืออะไร?",
+        "options": [
+          "Data และ Index",
+          "Data และ Pointer",
+          "Key และ Value",
+          "Head และ Tail"
+        ],
+        "answer": "Data และ Pointer"
+      },
+      {
+        "id": 3,
+        "text": "ข้อใดคือข้อได้เปรียบหลักของ Doubly Linked List เมื่อเทียบกับ Singly Linked List?",
+        "options": [
+          "ใช้หน่วยความจำน้อยกว่า",
+          "สามารถท่องไปในทิศทางย้อนกลับ (Backward) ได้",
+          "ทำงานแบบ LIFO ได้ดีกว่า",
+          "เข้าถึงข้อมูลแบบสุ่ม (Random Access) ได้เร็วกว่า"
+        ],
+        "answer": "สามารถท่องไปในทิศทางย้อนกลับ (Backward) ได้"
+      },
+      {
+        "id": 4,
+        "text": "โครงสร้างข้อมูลแบบ Circular Queue ถูกนำมาแก้ปัญหาใดของ Linear Queue แบบปกติ?",
+        "options": [
+          "ปัญหาความล่าช้าในการดึงข้อมูล",
+          "ปัญหาพื้นที่ว่างด้านหน้าคิวที่ไม่ได้ถูกนำมาใช้ซ้ำ (Wasted space)",
+          "ปัญหาการค้นหาข้อมูลที่ช้า",
+          "ปัญหาเรื่องลำดับการเข้าออกที่ผิดพลาด"
+        ],
+        "answer": "ปัญหาพื้นที่ว่างด้านหน้าคิวที่ไม่ได้ถูกนำมาใช้ซ้ำ (Wasted space)"
+      },
+      {
+        "id": 5,
+        "text": "ในโครงสร้างแบบต้นไม้ (Tree) โหนดที่ไม่มีโหนดแม่ (Parent node) เลย เรียกว่าอะไร?",
+        "options": [
+          "Leaf node",
+          "Child node",
+          "Root node",
+          "Sibling node"
+        ],
+        "answer": "Root node"
+      },
+      {
+        "id": 6,
+        "text": "ในโครงสร้างแบบต้นไม้ โหนดที่ไม่มีโหนดลูก (Child node) แตกแขนงออกไปอีก เรียกว่าอะไร?",
+        "options": [
+          "Leaf node",
+          "Internal node",
+          "Root node",
+          "Edge"
+        ],
+        "answer": "Leaf node"
+      },
+      {
+        "id": 7,
+        "text": "ข้อใดคือคุณสมบัติสำคัญของ Binary Search Tree (BST)?",
+        "options": [
+          "โหนดลูกด้านซ้ายมีค่ามากกว่าโหนดแม่เสมอ",
+          "โหนดลูกด้านซ้ายและขวามีค่าเท่ากัน",
+          "โหนดลูกด้านซ้ายมีค่าน้อยกว่า และโหนดลูกด้านขวามีค่ามากกว่าโหนดแม่",
+          "ทุกโหนดต้องมีลูกอย่างน้อย 2 โหนด"
+        ],
+        "answer": "โหนดลูกด้านซ้ายมีค่าน้อยกว่า และโหนดลูกด้านขวามีค่ามากกว่าโหนดแม่"
+      },
+      {
+        "id": 8,
+        "text": "ความสูง (Height) ของโหนดใดๆ ใน Tree วัดจากสิ่งใด?",
+        "options": [
+          "ระยะทางจากโหนดนั้นไปยังโหนด Root",
+          "จำนวนขอบ (Edge) ที่ยาวที่สุดจากโหนดนั้นไปยังโหนด Leaf",
+          "จำนวนลูกทั้งหมดของโหนดนั้น",
+          "ผลรวมของค่า Data ในโหนดย่อย"
+        ],
+        "answer": "จำนวนขอบ (Edge) ที่ยาวที่สุดจากโหนดนั้นไปยังโหนด Leaf"
+      },
+      {
+        "id": 9,
+        "text": "โครงสร้างต้นไม้แบบ AVL Tree มีจุดเด่นในเรื่องใด?",
+        "options": [
+          "เป็นต้นไม้ที่เก็บเฉพาะตัวเลข",
+          "เป็น Binary Search Tree ที่มีการปรับสมดุลตัวเอง (Self-balancing) โดยอัตโนมัติ",
+          "สามารถมีโหนดลูกได้ไม่จำกัดจำนวน",
+          "ไม่มีโหนด Root"
+        ],
+        "answer": "เป็น Binary Search Tree ที่มีการปรับสมดุลตัวเอง (Self-balancing) โดยอัตโนมัติ"
+      },
+      {
+        "id": 10,
+        "text": "โครงสร้างข้อมูลแบบกราฟ (Graph) ประกอบด้วยสองส่วนหลักคืออะไร?",
+        "options": [
+          "Node และ Pointer",
+          "Vertex และ Edge",
+          "Root และ Leaf",
+          "Key และ Value"
+        ],
+        "answer": "Vertex และ Edge"
+      },
+      {
+        "id": 11,
+        "text": "หากต้องการนำเสนอกราฟหนาแน่น (Dense Graph) ลงในหน่วยความจำคอมพิวเตอร์ วิธีใดเหมาะสมที่สุด?",
+        "options": [
+          "Adjacency List",
+          "Adjacency Matrix",
+          "Binary Tree",
+          "Stack"
+        ],
+        "answer": "Adjacency Matrix"
+      },
+      {
+        "id": 12,
+        "text": "ใน Hash Table ค่าที่บอกสัดส่วนระหว่างจำนวนข้อมูลที่จัดเก็บต่อขนาดของตารางทั้งหมด เรียกว่าอะไร?",
+        "options": [
+          "Hash Index",
+          "Load Factor",
+          "Collision Rate",
+          "Probing Value"
+        ],
+        "answer": "Load Factor"
+      },
+      {
+        "id": 13,
+        "text": "เทคนิค Linear Probing ในการแก้ปัญหาข้อมูลชนกัน (Collision) ของ Hash Table จัดอยู่ในกลุ่มวิธีใด?",
+        "options": [
+          "Chaining",
+          "Open Addressing",
+          "Double Hashing",
+          "Separate Chaining"
+        ],
+        "answer": "Open Addressing"
+      },
+      {
+        "id": 14,
+        "text": "โครงสร้างข้อมูลใดที่เหมาะสมที่สุดและมีประสิทธิภาพดีที่สุดในการนำมาสร้าง Priority Queue?",
+        "options": [
+          "Array",
+          "Linked List",
+          "Binary Heap",
+          "Stack"
+        ],
+        "answer": "Binary Heap"
+      },
+      {
+        "id": 15,
+        "text": "การตรวจสอบความถูกต้องของวงเล็บ (Balanced Parentheses) ในสมการคณิตศาสตร์ นิยมใช้โครงสร้างข้อมูลใด?",
+        "options": [
+          "Queue",
+          "Tree",
+          "Stack",
+          "Graph"
+        ],
+        "answer": "Stack"
+      },
+      {
+        "id": 16,
+        "text": "งานใดต่อไปนี้เหมาะสมที่จะใช้โครงสร้างข้อมูลแบบ Queue มากที่สุด?",
+        "options": [
+          "ระบบประวัติการเข้าชมเว็บ (Browser History)",
+          "การจัดการคิวเครื่องพิมพ์ (Printer Spooling)",
+          "การสลับการทำงานของฟังก์ชันแบบ Recursive",
+          "การหาเส้นทางที่สั้นที่สุด"
+        ],
+        "answer": "การจัดการคิวเครื่องพิมพ์ (Printer Spooling)"
+      },
+      {
+        "id": 17,
+        "text": "โครงสร้างข้อมูลแบบใดที่ถูกออกแบบมาเป็นพิเศษสำหรับการจัดเก็บและค้นหาข้อความ (String) เช่น ระบบ Autocomplete?",
+        "options": [
+          "B-Tree",
+          "Heap",
+          "Trie (Prefix Tree)",
+          "Hash Table"
+        ],
+        "answer": "Trie (Prefix Tree)"
+      },
+      {
+        "id": 18,
+        "text": "ใน Array 1 มิติ หากตำแหน่งเริ่มต้น (Base Address) คือ 100 และแต่ละช่องใช้พื้นที่ 4 bytes ที่อยู่ของข้อมูลใน Index ที่ 3 (A[3]) คือเท่าใด?",
+        "options": [
+          "103",
+          "104",
+          "112",
+          "116"
+        ],
+        "answer": "112"
+      },
+      {
+        "id": 19,
+        "text": "โครงสร้างข้อมูลที่อนุญาตให้เพิ่มและลบข้อมูลได้ทั้งสองด้าน (หัวและท้าย) คืออะไร?",
+        "options": [
+          "Priority Queue",
+          "Circular Queue",
+          "Deque (Double-ended Queue)",
+          "Stack"
+        ],
+        "answer": "Deque (Double-ended Queue)"
+      },
+      {
+        "id": 20,
+        "text": "สำหรับเมทริกซ์ที่มีข้อมูลส่วนใหญ่เป็นค่าศูนย์ (Sparse Matrix) โครงสร้างข้อมูลใดเหมาะสมในการประหยัดหน่วยความจำเมื่อนำมาเขียนโปรแกรม?",
+        "options": [
+          "2D Array ทั่วไป",
+          "Array of Linked Lists",
+          "Doubly Linked List สายเดียว",
+          "Stack"
+        ],
+        "answer": "Array of Linked Lists"
+      }
+    ]
+  },
+  {
+    "SubjectName": "Design and Analysis of Algorithms",
+    "Time": 15,
+    "question": [
+      {
+        "id": 1,
+        "text": "ข้อใดคือ Time Complexity ในกรณีแย่ที่สุด (Worst Case) ของอัลกอริทึม Quick Sort?",
+        "options": [
+          "O(n)",
+          "O(log n)",
+          "O(n log n)",
+          "O(n^2)"
+        ],
+        "answer": "O(n^2)"
+      },
+      {
+        "id": 2,
+        "text": "อัลกอริทึมการเรียงลำดับใดที่มี Time Complexity เป็น O(n log n) เสมอในทุกกรณี (Best, Average, Worst)?",
+        "options": [
+          "Bubble Sort",
+          "Insertion Sort",
+          "Quick Sort",
+          "Merge Sort"
+        ],
+        "answer": "Merge Sort"
+      },
+      {
+        "id": 3,
+        "text": "อัลกอริทึมการเรียงลำดับข้อใดจัดเป็น 'Stable Sort' (รักษาลำดับของข้อมูลที่มีค่าเท่ากันไว้ตำแหน่งเดิมหลังจัดเรียง)?",
+        "options": [
+          "Quick Sort",
+          "Heap Sort",
+          "Merge Sort",
+          "Selection Sort"
+        ],
+        "answer": "Merge Sort"
+      },
+      {
+        "id": 4,
+        "text": "แนวคิดการแก้ปัญหาโดยการแบ่งปัญหาใหญ่เป็นปัญหาย่อยที่เหมือนกัน แก้ไขทีละส่วน แล้วนำคำตอบมารวมกัน เรียกว่าอะไร?",
+        "options": [
+          "Dynamic Programming",
+          "Greedy Algorithm",
+          "Divide and Conquer",
+          "Backtracking"
+        ],
+        "answer": "Divide and Conquer"
+      },
+      {
+        "id": 5,
+        "text": "เทคนิคการแก้ปัญหาที่มีการจดจำคำตอบของปัญหาย่อย (Memoization) เพื่อลดการคำนวณซ้ำซ้อน เรียกว่าอะไร?",
+        "options": [
+          "Divide and Conquer",
+          "Dynamic Programming",
+          "Greedy Algorithm",
+          "Brute Force"
+        ],
+        "answer": "Dynamic Programming"
+      },
+      {
+        "id": 6,
+        "text": "อัลกอริทึมที่เลือกทางเลือกที่ดูดีที่สุด ณ ขณะนั้น (Local Optimum) โดยหวังว่าจะนำไปสู่คำตอบที่ดีที่สุดของปัญหาทั้งหมด (Global Optimum) คือเทคนิคใด?",
+        "options": [
+          "Dynamic Programming",
+          "Greedy Algorithm",
+          "Backtracking",
+          "Divide and Conquer"
+        ],
+        "answer": "Greedy Algorithm"
+      },
+      {
+        "id": 7,
+        "text": "อัลกอริทึม Dijkstra (Dijkstra's Algorithm) ถูกนำมาใช้เพื่อแก้ปัญหาในข้อใด?",
+        "options": [
+          "การเรียงลำดับข้อมูล",
+          "การหาเส้นทางที่สั้นที่สุดจากจุดเริ่มต้นเดียว (Single-source Shortest Path)",
+          "การค้นหาข้อมูลใน String",
+          "การหาต้นไม้แผ่กิ่งน้อยที่สุด (Minimum Spanning Tree)"
+        ],
+        "answer": "การหาเส้นทางที่สั้นที่สุดจากจุดเริ่มต้นเดียว (Single-source Shortest Path)"
+      },
+      {
+        "id": 8,
+        "text": "อัลกอริทึม Kruskal และ Prim ถูกนำมาใช้เพื่อแก้ปัญหาใดในทฤษฎีกราฟ?",
+        "options": [
+          "การหาเส้นทางที่สั้นที่สุด (Shortest Path)",
+          "การหาต้นไม้แผ่กิ่งน้อยที่สุด (Minimum Spanning Tree)",
+          "การเรียงลำดับเชิงทอพอโลยี (Topological Sort)",
+          "การหาการไหลสูงสุด (Maximum Flow)"
+        ],
+        "answer": "การหาต้นไม้แผ่กิ่งน้อยที่สุด (Minimum Spanning Tree)"
+      },
+      {
+        "id": 9,
+        "text": "การค้นหาข้อมูลแบบ Binary Search ในอาเรย์ จะทำงานได้อย่างถูกต้องก็ต่อเมื่อข้อมูลอยู่ในสภาพใด?",
+        "options": [
+          "ข้อมูลต้องเป็นตัวเลขเท่านั้น",
+          "ข้อมูลต้องถูกเก็บใน Linked List",
+          "ข้อมูลต้องผ่านการเรียงลำดับมาแล้ว",
+          "ข้อมูลต้องไม่มีค่าซ้ำกัน"
+        ],
+        "answer": "ข้อมูลต้องผ่านการเรียงลำดับมาแล้ว"
+      },
+      {
+        "id": 10,
+        "text": "ปัญหา 0/1 Knapsack (การเลือกใส่ของในกระเป๋าโดยห้ามแบ่งของเป็นเศษส่วน) ควรแก้ด้วยเทคนิคใดจึงจะได้คำตอบที่ดีที่สุดเสมอ?",
+        "options": [
+          "Greedy Algorithm",
+          "Dynamic Programming",
+          "Divide and Conquer",
+          "Two Pointers"
+        ],
+        "answer": "Dynamic Programming"
+      },
+      {
+        "id": 11,
+        "text": "หากปัญหา Knapsack อนุญาตให้แบ่งของเป็นสัดส่วนได้ (Fractional Knapsack) เทคนิคใดจะแก้ปัญหาได้รวดเร็วและได้คำตอบดีที่สุด?",
+        "options": [
+          "Dynamic Programming",
+          "Greedy Algorithm",
+          "Backtracking",
+          "Branch and Bound"
+        ],
+        "answer": "Greedy Algorithm"
+      },
+      {
+        "id": 12,
+        "text": "ในการค้นหาหรือท่องไปในกราฟแบบ Depth-First Search (DFS) นิยมใช้โครงสร้างข้อมูลใดช่วยในการทำงาน?",
+        "options": [
+          "Queue",
+          "Priority Queue",
+          "Stack",
+          "Hash Table"
+        ],
+        "answer": "Stack"
+      },
+      {
+        "id": 13,
+        "text": "ในการค้นหาหรือท่องไปในกราฟแบบ Breadth-First Search (BFS) นิยมใช้โครงสร้างข้อมูลใดช่วยในการทำงาน?",
+        "options": [
+          "Queue",
+          "Stack",
+          "Binary Tree",
+          "Heap"
+        ],
+        "answer": "Queue"
+      },
+      {
+        "id": 14,
+        "text": "อัลกอริทึมใดต่อไปนี้ ถูกออกแบบมาเพื่อใช้สำหรับการค้นหารูปแบบข้อความ (String Matching / Pattern Searching)?",
+        "options": [
+          "Floyd-Warshall Algorithm",
+          "KMP (Knuth-Morris-Pratt) Algorithm",
+          "Bellman-Ford Algorithm",
+          "Huffman Coding"
+        ],
+        "answer": "KMP (Knuth-Morris-Pratt) Algorithm"
+      },
+      {
+        "id": 15,
+        "text": "สัญลักษณ์เชิงเส้นกำกับ (Asymptotic Notation) ข้อใดใช้บอก 'ขอบเขตล่าง' (Lower Bound) ของเวลาที่อัลกอริทึมใช้ในการทำงาน?",
+        "options": [
+          "Big-O (O)",
+          "Big-Omega (Ω)",
+          "Big-Theta (Θ)",
+          "Little-o (o)"
+        ],
+        "answer": "Big-Omega (Ω)"
+      },
+      {
+        "id": 16,
+        "text": "ทฤษฎีบทใดใช้สำหรับหา Time Complexity ของอัลกอริทึมแบบ Divide and Conquer ที่อยู่ในรูปสมการเวียนเกิด (Recurrence Relation) เช่น T(n) = aT(n/b) + f(n)?",
+        "options": [
+          "Bayes' Theorem",
+          "Euler's Theorem",
+          "Master Theorem",
+          "Pigeonhole Principle"
+        ],
+        "answer": "Master Theorem"
+      },
+      {
+        "id": 17,
+        "text": "หากกราฟมีเส้นเชื่อมที่ 'น้ำหนักติดลบ' (Negative Weight Edges) แต่อยากหาเส้นทางที่สั้นที่สุดจากจุดเริ่มต้นจุดเดียว ควรใช้อัลกอริทึมใดจึงจะถูกต้อง?",
+        "options": [
+          "Dijkstra's Algorithm",
+          "Kruskal's Algorithm",
+          "Bellman-Ford Algorithm",
+          "Prim's Algorithm"
+        ],
+        "answer": "Bellman-Ford Algorithm"
+      },
+      {
+        "id": 18,
+        "text": "อัลกอริทึมใดใช้สำหรับหาเส้นทางที่สั้นที่สุดระหว่าง 'ทุกคู่จุดยอด' (All-Pairs Shortest Path) ในกราฟ?",
+        "options": [
+          "Floyd-Warshall Algorithm",
+          "Dijkstra's Algorithm",
+          "Bellman-Ford Algorithm",
+          "Ford-Fulkerson Algorithm"
+        ],
+        "answer": "Floyd-Warshall Algorithm"
+      },
+      {
+        "id": 19,
+        "text": "ปัญหาในกลุ่มคลาส NP (Nondeterministic Polynomial time) มีนิยามตรงกับข้อใดมากที่สุด?",
+        "options": [
+          "ปัญหาที่ไม่สามารถแก้ได้ด้วยคอมพิวเตอร์",
+          "ปัญหาที่สามารถ 'หาคำตอบ' ได้ในเวลา Polynomial Time",
+          "ปัญหาที่สามารถ 'ตรวจสอบความถูกต้องของคำตอบ' ได้ในเวลา Polynomial Time",
+          "ปัญหาที่ใช้เวลาแก้ระดับ Exponential Time เสมอ"
+        ],
+        "answer": "ปัญหาที่สามารถ 'ตรวจสอบความถูกต้องของคำตอบ' ได้ในเวลา Polynomial Time"
+      },
+      {
+        "id": 20,
+        "text": "อัลกอริทึมการเรียงลำดับข้อใดที่ 'ไม่ได้' ใช้การเปรียบเทียบค่าระหว่างข้อมูล (Non-comparison based sort) และสามารถทำงานได้ในเวลา O(n)?",
+        "options": [
+          "Quick Sort",
+          "Merge Sort",
+          "Heap Sort",
+          "Radix Sort"
+        ],
+        "answer": "Radix Sort"
+      }
+    ]
+  },
+  {
+    "SubjectName": "Machine Learning",
+    "Time": 15,
+    "question": [
+      {
+        "id": 1,
+        "text": "การเรียนรู้ที่โมเดลเรียนรู้จากข้อมูลที่มีการเฉลยคำตอบ (Label) ไว้ล่วงหน้า เรียกว่าอะไร?",
+        "options": [
+          "Unsupervised Learning",
+          "Supervised Learning",
+          "Reinforcement Learning",
+          "Semi-supervised Learning"
+        ],
+        "answer": "Supervised Learning"
+      },
+      {
+        "id": 2,
+        "text": "โจทย์ประเภทใดที่ต้องการพยากรณ์ค่าที่เป็นตัวเลขต่อเนื่อง (Continuous Value) เช่น ราคาบ้าน?",
+        "options": [
+          "Classification",
+          "Clustering",
+          "Regression",
+          "Association"
+        ],
+        "answer": "Regression"
+      },
+      {
+        "id": 3,
+        "text": "อัลกอริทึมใดจัดเป็น Linear Model ที่นิยมใช้กับโจทย์ Classification แบบ 2 กลุ่ม (Binary)?",
+        "options": [
+          "Linear Regression",
+          "Logistic Regression",
+          "K-Means",
+          "Decision Tree"
+        ],
+        "answer": "Logistic Regression"
+      },
+      {
+        "id": 4,
+        "text": "สภาวะที่โมเดลจดจำข้อมูลที่ใช้ฝึกฝน (Training Data) ได้ดีเกินไปจนไม่สามารถทำนายข้อมูลใหม่ได้แม่นยำ เรียกว่าอะไร?",
+        "options": [
+          "Underfitting",
+          "Overfitting",
+          "Bias",
+          "Normalization"
+        ],
+        "answer": "Overfitting"
+      },
+      {
+        "id": 5,
+        "text": "อัลกอริทึมใดที่ทำงานโดยการหา 'เพื่อนบ้าน' ที่ใกล้ที่สุด k ตัว เพื่อตัดสินใจในการทำนาย?",
+        "options": [
+          "SVM",
+          "Random Forest",
+          "k-Nearest Neighbors (k-NN)",
+          "Naïve Bayes"
+        ],
+        "answer": "k-Nearest Neighbors (k-NN)"
+      },
+      {
+        "id": 6,
+        "text": "การแบ่งข้อมูลออกเป็น k ส่วน แล้วสลับกันนำมาเป็นข้อมูลทดสอบ (Test) และข้อมูลฝึกฝน (Train) เรียกว่าวิธีใด?",
+        "options": [
+          "Hold-out Method",
+          "K-Fold Cross Validation",
+          "Grid Search",
+          "Bootstrap"
+        ],
+        "answer": "K-Fold Cross Validation"
+      },
+      {
+        "id": 7,
+        "text": "เมทริกซ์ที่ใช้แสดงประสิทธิภาพของโมเดล Classification โดยแสดงค่า True Positive, False Positive, etc. เรียกว่าอะไร?",
+        "options": [
+          "Correlation Matrix",
+          "Identity Matrix",
+          "Confusion Matrix",
+          "Sparse Matrix"
+        ],
+        "answer": "Confusion Matrix"
+      },
+      {
+        "id": 8,
+        "text": "อัลกอริทึมการเรียนรู้แบบ Unsupervised Learning ในข้อใดนิยมใช้ในการแบ่งกลุ่มข้อมูลโดยไม่มี Label?",
+        "options": [
+          "Decision Tree",
+          "Support Vector Machine",
+          "K-Means Clustering",
+          "Linear Regression"
+        ],
+        "answer": "K-Means Clustering"
+      },
+      {
+        "id": 9,
+        "text": "เทคนิคการรวมโมเดลหลายๆ ตัวเข้าด้วยกันเพื่อให้ได้ผลลัพธ์ที่แม่นยำขึ้น (เช่น Random Forest) เรียกว่าอะไร?",
+        "options": [
+          "Feature Engineering",
+          "Ensemble Learning",
+          "Dimensionality Reduction",
+          "Optimization"
+        ],
+        "answer": "Ensemble Learning"
+      },
+      {
+        "id": 10,
+        "text": "ตัววัดผล (Metric) ใดที่คำนวณจากจำนวนค่าที่ทำนายถูกทั้งหมด หารด้วยจำนวนข้อมูลทั้งหมด?",
+        "options": [
+          "Precision",
+          "Recall",
+          "F1-Score",
+          "Accuracy"
+        ],
+        "answer": "Accuracy"
+      },
+      {
+        "id": 11,
+        "text": "ในการหาจุดต่ำสุดของ Loss Function นิยมใช้อัลกอริทึมการเพิ่มประสิทธิภาพ (Optimizer) พื้นฐานตัวใด?",
+        "options": [
+          "Random Search",
+          "Gradient Descent",
+          "Grid Search",
+          "Newton's Method"
+        ],
+        "answer": "Gradient Descent"
+      },
+      {
+        "id": 12,
+        "text": "เทคนิคการลดจำนวน Feature โดยยังรักษาความสัมพันธ์ของข้อมูลส่วนใหญ่ไว้ (เช่น PCA) เรียกว่าอะไร?",
+        "options": [
+          "Clustering",
+          "Regularization",
+          "Dimensionality Reduction",
+          "Feature Selection"
+        ],
+        "answer": "Dimensionality Reduction"
+      },
+      {
+        "id": 13,
+        "text": "ค่าที่ใช้ควบคุมความเร็วในการปรับปรุง Weight ของโมเดลในแต่ละรอบการฝึกฝนเรียกว่าอะไร?",
+        "options": [
+          "Batch Size",
+          "Epoch",
+          "Learning Rate",
+          "Momentum"
+        ],
+        "answer": "Learning Rate"
+      },
+      {
+        "id": 14,
+        "text": "การทำ Data Preprocessing โดยการปรับช่วงข้อมูลให้อยู่ระหว่าง 0 ถึง 1 เรียกว่าอะไร?",
+        "options": [
+          "Standardization",
+          "Min-Max Scaling (Normalization)",
+          "Encoding",
+          "Imputation"
+        ],
+        "answer": "Min-Max Scaling (Normalization)"
+      },
+      {
+        "id": 15,
+        "text": "อัลกอริทึมใดที่ใช้ทฤษฎีความน่าจะเป็นของ Bayes และสมมติว่าแต่ละ Feature เป็นอิสระต่อกัน?",
+        "options": [
+          "Naïve Bayes",
+          "Logistic Regression",
+          "Perceptron",
+          "XGBoost"
+        ],
+        "answer": "Naïve Bayes"
+      },
+      {
+        "id": 16,
+        "text": "Regularization แบบใดที่เพิ่มค่า Penalty ด้วยสมการสมบูรณ์ (Absolute Value) หรือที่เรียกว่า L1 Regularization?",
+        "options": [
+          "Ridge",
+          "Lasso",
+          "Elastic Net",
+          "Dropout"
+        ],
+        "answer": "Lasso"
+      },
+      {
+        "id": 17,
+        "text": "ในโมเดล Decision Tree เกณฑ์ใดที่นิยมใช้เพื่อวัดความไม่บริสุทธิ์ (Impurity) ของโหนดข้อมูล?",
+        "options": [
+          "Mean Squared Error",
+          "Gini Impurity",
+          "Euclidean Distance",
+          "Cosine Similarity"
+        ],
+        "answer": "Gini Impurity"
+      },
+      {
+        "id": 18,
+        "text": "ปัญหาที่โมเดลมีความผิดพลาดสูงทั้งใน Training และ Testing เพราะตัวโมเดลง่ายเกินไป เรียกว่าอะไร?",
+        "options": [
+          "High Variance",
+          "Overfitting",
+          "High Bias (Underfitting)",
+          "Data Leakage"
+        ],
+        "answer": "High Bias (Underfitting)"
+      },
+      {
+        "id": 19,
+        "text": "โจทย์พยากรณ์ว่า 'เมลลนี้เป็นสแปมหรือไม่' จัดเป็นปัญหาประเภทใด?",
+        "options": [
+          "Multi-class Classification",
+          "Binary Classification",
+          "Regression",
+          "Density Estimation"
+        ],
+        "answer": "Binary Classification"
+      },
+      {
+        "id": 20,
+        "text": "กราฟที่ใช้เปรียบเทียบระหว่าง True Positive Rate และ False Positive Rate เพื่อประเมินโมเดล Classification เรียกว่าอะไร?",
+        "options": [
+          "Scatter Plot",
+          "Histogram",
+          "ROC Curve",
+          "Box Plot"
+        ],
+        "answer": "ROC Curve"
+      }
+    ]
+  },
+  {
+    "SubjectName": "Deep Learning Fundamentals",
+    "Time": 15,
+    "question": [
+      {
+        "id": 1,
+        "text": "หน่วยย่อยที่เล็กที่สุดใน Neural Network ที่ทำหน้าที่รับ Input มาคำนวณและส่ง Output ออกไปเรียกว่าอะไร?",
+        "options": [
+          "Kernel",
+          "Perceptron (Neuron)",
+          "Layer",
+          "Filter"
+        ],
+        "answer": "Perceptron (Neuron)"
+      },
+      {
+        "id": 2,
+        "text": "Activation Function ใดที่มีลักษณะการคืนค่าระหว่าง 0 ถึง 1 และนิยมใช้ใน Output Layer ของ Binary Classification?",
+        "options": [
+          "ReLU",
+          "Tanh",
+          "Sigmoid",
+          "Softmax"
+        ],
+        "answer": "Sigmoid"
+      },
+      {
+        "id": 3,
+        "text": "Activation Function ที่นิยมใช้ใน Hidden Layer มากที่สุดเนื่องจากช่วยลดปัญหา Vanishing Gradient คือข้อใด?",
+        "options": [
+          "ReLU",
+          "Sigmoid",
+          "Softmax",
+          "Linear"
+        ],
+        "answer": "ReLU"
+      },
+      {
+        "id": 4,
+        "text": "ในกระบวนการฝึกฝนโมเดล อัลกอริทึมที่ใช้สำหรับคำนวณหาค่า Gradient ของ Error ย้อนกลับไปยังแต่ละ Layer เรียกว่าอะไร?",
+        "options": [
+          "Forward Propagation",
+          "Backpropagation",
+          "Gradient Descent",
+          "Max Pooling"
+        ],
+        "answer": "Backpropagation"
+      },
+      {
+        "id": 5,
+        "text": "ค่าพารามิเตอร์ (Parameter) หลักใน Neural Network ที่โมเดลต้องทำการปรับปรุงค่าระหว่างการเรียนรู้คือข้อใด?",
+        "options": [
+          "Weights and Biases",
+          "Learning Rate",
+          "Batch Size",
+          "Number of Layers"
+        ],
+        "answer": "Weights and Biases"
+      },
+      {
+        "id": 6,
+        "text": "การนำข้อมูลทั้งหมดใน Dataset มาเข้ากระบวนการฝึกฝนจนครบทุกตัว 1 รอบ เรียกว่าอะไร?",
+        "options": [
+          "Iteration",
+          "Batch",
+          "Epoch",
+          "Step"
+        ],
+        "answer": "Epoch"
+      },
+      {
+        "id": 7,
+        "text": "เทคนิคใดช่วยลดปัญหา Overfitting โดยการ 'สุ่มปิด' การทำงานของ Neuron ในบางเลเยอร์ระหว่างการฝึกฝน?",
+        "options": [
+          "Batch Normalization",
+          "Dropout",
+          "Data Augmentation",
+          "Weight Initialization"
+        ],
+        "answer": "Dropout"
+      },
+      {
+        "id": 8,
+        "text": "Optimizer ตัวใดที่พัฒนาต่อยอดจาก SGD โดยมีการปรับ Learning Rate แบบอัตโนมัติ (Adaptive) และได้รับความนิยมสูงสุดในปัจจุบัน?",
+        "options": [
+          "Momentum",
+          "Adagrad",
+          "Adam",
+          "RMSprop"
+        ],
+        "answer": "Adam"
+      },
+      {
+        "id": 9,
+        "text": "Loss Function ใดที่เหมาะสมที่สุดสำหรับโจทย์ Multi-class Classification?",
+        "options": [
+          "Mean Squared Error (MSE)",
+          "Binary Cross-Entropy",
+          "Categorical Cross-Entropy",
+          "Mean Absolute Error (MAE)"
+        ],
+        "answer": "Categorical Cross-Entropy"
+      },
+      {
+        "id": 10,
+        "text": "Layer ประเภทใดใน CNN ที่ทำหน้าที่สกัดคุณลักษณะ (Features) จากรูปภาพโดยใช้การเลื่อนแผ่น Filter?",
+        "options": [
+          "Fully Connected Layer",
+          "Pooling Layer",
+          "Convolutional Layer",
+          "Flatten Layer"
+        ],
+        "answer": "Convolutional Layer"
+      },
+      {
+        "id": 11,
+        "text": "วัตถุประสงค์หลักของการทำ Pooling Layer ใน Deep Learning คืออะไร?",
+        "options": [
+          "เพื่อเพิ่มความแม่นยำ",
+          "เพื่อลดขนาดของภาพ (Downsampling) และจำนวนพารามิเตอร์",
+          "เพื่อเปลี่ยนภาพให้เป็น 1D Vector",
+          "เพื่อเพิ่มความสว่างให้รูปภาพ"
+        ],
+        "answer": "เพื่อลดขนาดของภาพ (Downsampling) และจำนวนพารามิเตอร์"
+      },
+      {
+        "id": 12,
+        "text": "โครงสร้าง Neural Network แบบใดที่ออกแบบมาเพื่อจัดการกับข้อมูลที่เป็นลำดับ (Sequential Data) เช่น ข้อความ หรือ เสียง?",
+        "options": [
+          "CNN",
+          "RNN",
+          "MLP",
+          "GAN"
+        ],
+        "answer": "RNN"
+      },
+      {
+        "id": 13,
+        "text": "ปัญหาที่ Gradient มีค่าเข้าใกล้ศูนย์มากๆ จนทำให้ Weights ใน Layer แรกๆ ไม่ถูกปรับปรุงเรียกว่าอะไร?",
+        "options": [
+          "Exploding Gradient",
+          "Vanishing Gradient",
+          "Dead ReLU",
+          "Local Minima"
+        ],
+        "answer": "Vanishing Gradient"
+      },
+      {
+        "id": 14,
+        "text": "การนำโมเดลที่ถูกฝึกฝนมาแล้ว (Pre-trained Model) มาปรับปรุงเพื่อใช้กับงานใหม่ที่มีข้อมูลน้อย เรียกว่าอะไร?",
+        "options": [
+          "Fine-tuning / Transfer Learning",
+          "Supervised Learning",
+          "Zero-shot Learning",
+          "Reinforcement Learning"
+        ],
+        "answer": "Fine-tuning / Transfer Learning"
+      },
+      {
+        "id": 15,
+        "text": "เทคนิคการปรับค่า Input ในแต่ละ Layer ให้มีค่าเฉลี่ยเป็น 0 และความแปรปรวนเป็น 1 เพื่อให้โมเดลฝึกฝนได้เร็วขึ้นเรียกว่าอะไร?",
+        "options": [
+          "Standardization",
+          "Batch Normalization",
+          "Min-Max Scaling",
+          "Regularization"
+        ],
+        "answer": "Batch Normalization"
+      },
+      {
+        "id": 16,
+        "text": "Activation Function ใดที่มักใช้ใน Output Layer สำหรับโจทย์จัดกลุ่มที่มากกว่า 2 กลุ่มขึ้นไป เพื่อให้ผลรวมความน่าจะเป็นเท่ากับ 1?",
+        "options": [
+          "Sigmoid",
+          "ReLU",
+          "Softmax",
+          "Tanh"
+        ],
+        "answer": "Softmax"
+      },
+      {
+        "id": 17,
+        "text": "ใน RNN ปัญหาระยะความจำที่สั้นเกินไป (Long-term Dependencies) ถูกแก้ไขด้วยการใช้หน่วยประมวลผลพิเศษชนิดใด?",
+        "options": [
+          "Perceptron",
+          "LSTM / GRU",
+          "Encoder",
+          "Transformer"
+        ],
+        "answer": "LSTM / GRU"
+      },
+      {
+        "id": 18,
+        "text": "Hyperparameter ใดที่กำหนดจำนวนตัวอย่างข้อมูลที่ป้อนเข้าโมเดลในแต่ละครั้งของการอัปเดต Weight?",
+        "options": [
+          "Epoch Size",
+          "Learning Rate",
+          "Batch Size",
+          "Hidden Unit"
+        ],
+        "answer": "Batch Size"
+      },
+      {
+        "id": 19,
+        "text": "โครงสร้างเครือข่ายที่มีการแข่งขันกันระหว่าง Generator และ Discriminator เรียกว่าอะไร?",
+        "options": [
+          "Autoencoder",
+          "GAN (Generative Adversarial Network)",
+          "ResNet",
+          "U-Net"
+        ],
+        "answer": "GAN (Generative Adversarial Network)"
+      },
+      {
+        "id": 20,
+        "text": "กลไก (Mechanism) สำคัญที่ใช้ใน Transformer ซึ่งช่วยให้โมเดลให้ความสำคัญกับคำต่างๆ ในประโยคได้ดีขึ้นคืออะไร?",
+        "options": [
+          "Convolution",
+          "Recurrence",
+          "Attention Mechanism",
+          "Stochasticity"
+        ],
+        "answer": "Attention Mechanism"
+      }
+    ]
+  },
+  {
+    "SubjectName": "Large Language Models",
+    "Time": 12,
+    "question": [
+      {
+        "id": 1,
+        "text": "สถาปัตยกรรมพื้นฐานที่เป็นหัวใจหลักของ LLM ในปัจจุบันคือข้อใด?",
+        "options": [
+          "RNN",
+          "CNN",
+          "Transformer",
+          "LSTM"
+        ],
+        "answer": "Transformer"
+      },
+      {
+        "id": 2,
+        "text": "กลไกใดใน Transformer ที่ช่วยให้โมเดลสามารถเข้าใจความสัมพันธ์ระหว่างคำในประโยคได้โดยไม่สนระยะห่าง?",
+        "options": [
+          "Backpropagation",
+          "Self-Attention",
+          "Max Pooling",
+          "Convolution"
+        ],
+        "answer": "Self-Attention"
+      },
+      {
+        "id": 3,
+        "text": "คำว่า 'Large' ใน Large Language Models มักอ้างอิงถึงจำนวนสิ่งใดที่มีมหาศาล?",
+        "options": [
+          "Data Layers",
+          "Training Epochs",
+          "Parameters",
+          "Input Length"
+        ],
+        "answer": "Parameters"
+      },
+      {
+        "id": 4,
+        "text": "กระบวนการเริ่มต้นที่ฝึกโมเดลด้วยข้อมูลมหาศาลจากอินเทอร์เน็ตเพื่อให้มีความรู้พื้นฐานเรียกว่าอะไร?",
+        "options": [
+          "Fine-tuning",
+          "Pre-training",
+          "Prompt Engineering",
+          "Reinforcement Learning"
+        ],
+        "answer": "Pre-training"
+      },
+      {
+        "id": 5,
+        "text": "เทคนิคการปรับจูนโมเดลที่ผ่านการ Pre-train มาแล้วให้ทำงานเฉพาะทางได้ดีขึ้นเรียกว่าอะไร?",
+        "options": [
+          "Tokenization",
+          "Fine-tuning",
+          "Zero-shot Learning",
+          "Encoding"
+        ],
+        "answer": "Fine-tuning"
+      },
+      {
+        "id": 6,
+        "text": "หน่วยย่อยที่สุดที่ LLM ใช้ในการประมวลผลข้อความ (อาจเป็นคำ, ส่วนของคำ หรือตัวอักษร) เรียกว่าอะไร?",
+        "options": [
+          "Bit",
+          "Word",
+          "Token",
+          "Vector"
+        ],
+        "answer": "Token"
+      },
+      {
+        "id": 7,
+        "text": "เทคนิค RLHF ที่ใช้ในการปรับปรุง LLM ย่อมาจากอะไร?",
+        "options": [
+          "Reinforcement Learning from Human Feedback",
+          "Random Linear Human Feedback",
+          "Recurrent Logic Human Feedback",
+          "Rapid Learning from Human Feedback"
+        ],
+        "answer": "Reinforcement Learning from Human Feedback"
+      },
+      {
+        "id": 8,
+        "text": "ปรากฏการณ์ที่ LLM สร้างคำตอบที่ดูมั่นใจแต่ข้อมูลผิดพลาดหรือไม่เป็นความจริงเรียกว่าอะไร?",
+        "options": [
+          "Overfitting",
+          "Bias",
+          "Hallucination",
+          "Vanishing Gradient"
+        ],
+        "answer": "Hallucination"
+      },
+      {
+        "id": 9,
+        "text": "การเขียนคำสั่งหรือคำอธิบายเพื่อให้ LLM ทำงานตามที่ต้องการเรียกว่าเทคนิคอะไร?",
+        "options": [
+          "Software Engineering",
+          "Reverse Engineering",
+          "Prompt Engineering",
+          "Data Engineering"
+        ],
+        "answer": "Prompt Engineering"
+      },
+      {
+        "id": 10,
+        "text": "เทคนิคที่ให้โมเดลทำตามคำสั่งโดยให้ตัวอย่างคำตอบไปเล็กน้อย (เช่น 2-3 ตัวอย่าง) ใน Prompt เรียกว่าอะไร?",
+        "options": [
+          "Zero-shot prompting",
+          "Few-shot prompting",
+          "Negative prompting",
+          "Chain of Thought"
+        ],
+        "answer": "Few-shot prompting"
+      },
+      {
+        "id": 11,
+        "text": "เทคนิคที่กระตุ้นให้ LLM 'ค่อยๆ คิดเป็นลำดับขั้นตอน' เพื่อแก้โจทย์ที่ซับซ้อนเรียกว่าอะไร?",
+        "options": [
+          "Self-reflection",
+          "Chain of Thought (CoT)",
+          "Beam Search",
+          "Temperature Scaling"
+        ],
+        "answer": "Chain of Thought (CoT)"
+      },
+      {
+        "id": 12,
+        "text": "พารามิเตอร์ใดที่ใช้ควบคุมความ 'สร้างสรรค์' หรือ 'ความสุ่ม' ในการเลือกคำตอบของ LLM?",
+        "options": [
+          "Batch Size",
+          "Top-K",
+          "Temperature",
+          "Max Tokens"
+        ],
+        "answer": "Temperature"
+      },
+      {
+        "id": 13,
+        "text": "เทคนิค RAG ที่ใช้เพิ่มความแม่นยำให้ LLM โดยการไปดึงข้อมูลจากแหล่งภายนอกมาประกอบการตอบย่อมาจากอะไร?",
+        "options": [
+          "Random Access Generation",
+          "Retrieval-Augmented Generation",
+          "Recursive Automatic Generation",
+          "Rapid Analysis Generation"
+        ],
+        "answer": "Retrieval-Augmented Generation"
+      },
+      {
+        "id": 14,
+        "text": "ส่วนของ Transformer ที่ทำหน้าที่แปลงลำดับของ Input ให้เป็น Vector แทนความหมายเรียกว่าอะไร?",
+        "options": [
+          "Encoder",
+          "Decoder",
+          "Head",
+          "Classifier"
+        ],
+        "answer": "Encoder"
+      },
+      {
+        "id": 15,
+        "text": "โมเดลตระกูล GPT (เช่น GPT-4) มีโครงสร้างหลักเน้นหนักไปที่ส่วนใดของ Transformer?",
+        "options": [
+          "Encoder-only",
+          "Decoder-only",
+          "Encoder-Decoder",
+          "CNN-based"
+        ],
+        "answer": "Decoder-only"
+      },
+      {
+        "id": 16,
+        "text": "การแปลง Token ให้เป็นพิกัดในพื้นที่หลายมิติเพื่อแทนความหมายเชิงบริบทเรียกว่าอะไร?",
+        "options": [
+          "Hashing",
+          "One-hot Encoding",
+          "Word Embedding",
+          "Indexing"
+        ],
+        "answer": "Word Embedding"
+      },
+      {
+        "id": 17,
+        "text": "ขีดจำกัดของจำนวน Token สูงสุดที่โมเดลสามารถรับและประมวลผลได้ในครั้งเดียวเรียกว่าอะไร?",
+        "options": [
+          "Token Limit",
+          "Context Window",
+          "Memory Size",
+          "Sequence Buffer"
+        ],
+        "answer": "Context Window"
+      },
+      {
+        "id": 18,
+        "text": "เทคนิค LoRA ที่ใช้ในการทำ Fine-tuning อย่างประหยัดทรัพยากรย่อมาจากอะไร?",
+        "options": [
+          "Long Range Adaptation",
+          "Low-Rank Adaptation",
+          "Logic Re-Alignment",
+          "Local Refinement Algorithm"
+        ],
+        "answer": "Low-Rank Adaptation"
+      },
+      {
+        "id": 19,
+        "text": "โมเดลภาษาขนาดใหญ่ที่ถูกฝึกฝนให้เข้าใจและประมวลผลได้หลายภาษาเรียกว่าอะไร?",
+        "options": [
+          "Monolingual Model",
+          "Multimodal Model",
+          "Multilingual Model",
+          "Bilingual Model"
+        ],
+        "answer": "Multilingual Model"
+      },
+      {
+        "id": 20,
+        "text": "ความสามารถในการประมวลผลได้ทั้ง ข้อความ รูปภาพ และเสียง ภายในโมเดลเดียวเรียกว่าคุณสมบัติใด?",
+        "options": [
+          "Multi-tasking",
+          "Multimodality",
+          "Multi-threading",
+          "Polymorphism"
+        ],
+        "answer": "Multimodality"
+      }
+    ]
+  }
+]

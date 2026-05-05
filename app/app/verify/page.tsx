@@ -3,6 +3,7 @@ import type { Verification, User, Skill } from "@/lib/api/types"
 import { VerifyLevelSection } from "@/components/verify/verify-level-section"
 import type { VerifyLevel } from "@/lib/verify-data"
 import { CreateVerificationDialog } from "@/components/verify/create-verification-dialog"
+import { getAllSubjects } from "@/lib/questions"
 
 function getColorFromString(str: string): "green" | "blue" | "yellow" {
   const hash = str.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0)
@@ -35,11 +36,11 @@ async function getSkills(): Promise<Skill[]> {
 }
 
 export default async function VerifyPage() {
-  const [verifications, currentUser, skills] = await Promise.all([
+  const [verifications, currentUser] = await Promise.all([
     getVerifications(),
     getCurrentUser(),
-    getSkills(),
   ])
+  const subjects = getAllSubjects()
 
   if (!currentUser) {
     return <div>Unable to load user data</div>
@@ -131,7 +132,7 @@ export default async function VerifyPage() {
           Verify your skills by completing assessments.
         </p>
         <div className="mt-4">
-          <CreateVerificationDialog user={currentUser} skills={skills} />
+          <CreateVerificationDialog user={currentUser} subjects={subjects} />
         </div>
       </div>
 

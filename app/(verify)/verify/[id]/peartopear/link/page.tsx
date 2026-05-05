@@ -28,7 +28,7 @@ export default async function P2PLinkPage({ params }: P2PLinkPageProps) {
   const p2pLevel = verification.levelData.find(
     (l) => l.level === "p2p_interview"
   )
-  const discordLink = p2pLevel?.link || "https://discord.gg/skillcollection"
+  const discordLink = p2pLevel?.link || process.env.DISCORD_JOIN_LINK || "https://discord.gg/skillcollection"
 
   return (
     <div className="max-w-md mx-auto text-center py-12">

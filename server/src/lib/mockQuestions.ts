@@ -1,3 +1,6 @@
+import fs from 'fs';
+import path from 'path';
+
 export interface ChoiceQuestion {
   question: string;
   options: string[];
@@ -5,11 +8,37 @@ export interface ChoiceQuestion {
 }
 
 export function generateMockQuestions(skillTitle: string): ChoiceQuestion[] {
-  // Mock questions based on skill title - can be replaced with LLM call later
-  const skillLower = skillTitle.toLowerCase();
+  try {
+    // The question folder is mounted at /app/question in Docker
+    const filePath = path.join(process.cwd(), 'question', 'all_questions.json');
+    if (!fs.existsSync(filePath)) {
+      console.warn(`Questions file not found at ${filePath}, falling back to generic questions`);
+      return getGenericQuestions(skillTitle);
+    }
 
-  // Generic questions that work for most skills
-  const questions: ChoiceQuestion[] = [
+    const content = fs.readFileSync(filePath, 'utf-8');
+    const subjects = JSON.parse(content);
+    
+    // Find the subject that matches the skill title
+    const subject = subjects.find((s: any) => s.SubjectName === skillTitle);
+    
+    if (subject && subject.question && subject.question.length > 0) {
+      return subject.question.map((q: any) => ({
+        question: q.text,
+        options: q.options,
+        answer: q.answer
+      }));
+    }
+
+    return getGenericQuestions(skillTitle);
+  } catch (error) {
+    console.error('Error reading questions file:', error);
+    return getGenericQuestions(skillTitle);
+  }
+}
+
+function getGenericQuestions(skillTitle: string): ChoiceQuestion[] {
+  return [
     {
       question: `What is ${skillTitle}?`,
       options: [
@@ -29,38 +58,6 @@ export function generateMockQuestions(skillTitle: string): ChoiceQuestion[] {
         "Elimination of all bugs",
       ],
       answer: "Better maintainability and scalability",
-    },
-    {
-      question: `In what scenario is ${skillTitle} most commonly used?`,
-      options: [
-        "For simple scripts only",
-        "For large-scale applications and teams",
-        "For hardware programming exclusively",
-        "For entertainment purposes only",
-      ],
-      answer: "For large-scale applications and teams",
-    },
-    {
-      question: `What skill level is typically required to master ${skillTitle}?`,
-      options: [
-        "Beginner only",
-        "Intermediate to advanced",
-        "Only for experts with 20+ years",
-        "No skill level required",
-      ],
-      answer: "Intermediate to advanced",
-    },
-    {
-      question: `How frequently is ${skillTitle} updated or evolved?`,
-      options: [
-        "Never, it's completely static",
-        "Regularly to adapt to industry needs",
-        "Only when someone complains",
-        "Every single day",
-      ],
-      answer: "Regularly to adapt to industry needs",
-    },
+    }
   ];
-
-  return questions;
 }

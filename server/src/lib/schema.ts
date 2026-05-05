@@ -5,6 +5,7 @@ export interface IUser extends Document {
   email: string;
   password: string;
   name: string;
+  role: "user" | "interviewer";
   photo?: string;
   birthDate?: Date;
   createdAt: Date;
@@ -80,6 +81,11 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: [true, "Name is required"],
       trim: true,
+    },
+    role: {
+      type: String,
+      enum: ["user", "interviewer"],
+      default: "user",
     },
     photo: {
       type: String,

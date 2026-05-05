@@ -2,6 +2,7 @@ import { apiFetch } from "@/lib/api/server"
 import type { User, Verification } from "@/lib/api/types"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
+import { TaskReviewList } from "@/components/dashboard/task-review-list"
 
 async function getCurrentUser(): Promise<User | null> {
   try {
@@ -37,25 +38,19 @@ export default async function AppPage() {
   })
 
   // Calculate stats
-  const verifiedSkills = verifications.filter((v) =>
-    v.levelData.every((l) => l.status === "completed")
-  )
+  const verifiedSkillsCount = verifications.reduce((count, v) => 
+    count + v.levelData.filter((l) => l.status === "completed").length, 0)
 
-  const pendingTasks = verifications.reduce((count, v) => {
-    return count + v.levelData.filter((l) => l.status === "pending").length
+  const fullyVerifiedSkillsCount = verifications.filter((v) =>
+    v.levelData.length === 3 && v.levelData.every((l) => l.status === "completed")
+  ).length
+
+  const pendingTasks = allVerifications.filter((v) => {
+    const vUserId = typeof v.userId === "string" ? v.userId : v.userId._id
+    return vUserId !== currentUser._id
+  }).reduce((count, v) => {
+    return count + v.levelData.filter((l) => l.status === "pending" && (l.level === "p2p_interview" || l.level === "interview")).length
   }, 0)
-
-  const highestLevel = Math.max(
-    ...verifications.map((v) => {
-      const levels = { choice: 1, p2p_interview: 2, interview: 3 }
-      return Math.max(
-        ...v.levelData
-          .filter((l) => l.status === "completed")
-          .map((l) => levels[l.level as keyof typeof levels] || 0)
-      )
-    }),
-    0
-  )
 
   // Build skill progress map
   const skillProgress = new Map<
@@ -111,30 +106,23 @@ export default async function AppPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
-        <div className="border border-blue-200 rounded-lg p-6 bg-blue-50">
-          <h2 className="text-blue-600 text-sm font-medium">Total Collections</h2>
-          <p className="text-4xl font-bold mt-2 text-blue-900">-</p>
-          <p className="text-blue-600 text-sm mt-2">Coming soon</p>
-        </div>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
         <div className="border border-green-200 rounded-lg p-6 bg-green-50">
           <h2 className="text-green-600 text-sm font-medium">Verified Skills</h2>
           <p className="text-4xl font-bold mt-2 text-green-900">
-            {verifiedSkills.length}
+            {verifiedSkillsCount}
           </p>
           <p className="text-green-600 text-sm mt-2">
-            {verifiedSkills
-              .map((v) => (typeof v.skillId === "string" ? "Unknown" : v.skillId.title))
-              .join(", ") || "None yet"}
+            Total completed assessments
           </p>
         </div>
         <div className="border border-purple-200 rounded-lg p-6 bg-purple-50">
           <h2 className="text-purple-600 text-sm font-medium">Highest Level</h2>
           <p className="text-4xl font-bold mt-2 text-purple-900">
-            {highestLevel === 0 ? "-" : `Level ${highestLevel}`}
+            {fullyVerifiedSkillsCount}
           </p>
           <p className="text-purple-600 text-sm mt-2">
-            {highestLevel === 0 ? "Not started" : "Keep it up"}
+            Skills fully verified (all 3 levels)
           </p>
         </div>
         <div className="border border-orange-200 rounded-lg p-6 bg-orange-50">
@@ -142,56 +130,12 @@ export default async function AppPage() {
           <p className="text-4xl font-bold mt-2 text-orange-900">
             {pendingTasks}
           </p>
-          <p className="text-orange-600 text-sm mt-2">Assessments to complete</p>
+          <p className="text-orange-600 text-sm mt-2">Tasks to review for others</p>
         </div>
       </div>
 
-      {/* Recent Activity & Skill Progress */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        {/* Recent Activity */}
-        <div className="border rounded-lg p-6">
-          <h2 className="text-lg font-bold mb-4">Recent Activity</h2>
-          <p className="text-gray-500 text-xs mb-4">
-            Your latest skill verification updates
-          </p>
-          <div className="space-y-4">
-            {verifications.length === 0 ? (
-              <p className="text-gray-500 text-sm">No verifications yet</p>
-            ) : (
-              verifications.slice(0, 3).map((v) => {
-                const skillTitle =
-                  typeof v.skillId === "string" ? "Unknown" : v.skillId.title
-                const latestLevel = v.levelData[v.levelData.length - 1]
-                const statusLabel =
-                  latestLevel?.status === "completed"
-                    ? "Finished"
-                    : latestLevel?.status === "pending"
-                      ? "Available"
-                      : "Failed"
-                const statusColor =
-                  latestLevel?.status === "completed"
-                    ? "bg-green-100 text-green-800"
-                    : latestLevel?.status === "pending"
-                      ? "bg-blue-100 text-blue-800"
-                      : "bg-red-100 text-red-800"
-
-                return (
-                  <div key={v._id} className="pb-4 border-b">
-                    <p className="font-semibold">{skillTitle}</p>
-                    <p className="text-gray-500 text-sm">
-                      Level {v.levelData.length} - Current status
-                    </p>
-                    <Badge className={`mt-2 ${statusColor} border-0`}>
-                      {statusLabel}
-                    </Badge>
-                  </div>
-                )
-              })
-            )}
-          </div>
-        </div>
-
-        {/* Skill Progress */}
+      {/* Skill Progress & Pending Tasks */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="border rounded-lg p-6">
           <h2 className="text-lg font-bold mb-4">Skill Progress</h2>
           <p className="text-gray-500 text-xs mb-6">Your verification journey</p>
@@ -200,7 +144,7 @@ export default async function AppPage() {
               <p className="text-gray-500 text-sm">No skills tracked yet</p>
             ) : (
               Array.from(skillProgress.values())
-                .slice(0, 3)
+                .slice(0, 5)
                 .map((skill) => (
                   <div key={skill.name}>
                     <div className="flex justify-between mb-2">
@@ -220,6 +164,12 @@ export default async function AppPage() {
                 ))
             )}
           </div>
+        </div>
+
+        <div className="border rounded-lg p-6">
+          <h2 className="text-lg font-bold mb-4">Pending Tasks</h2>
+          <p className="text-gray-500 text-xs mb-6">Review requests from others</p>
+          <TaskReviewList verifications={allVerifications} currentUser={currentUser} />
         </div>
       </div>
     </div>
