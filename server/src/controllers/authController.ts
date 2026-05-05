@@ -1,8 +1,8 @@
 import type { Request, Response } from "express";
-import { User } from "@/lib/schema";
-import { loginUserSchema, validateData } from "@/lib/validation";
-import { comparePassword, generateToken, hashPassword } from "@/lib/auth";
-import { createUserSchema } from "@/lib/validation";
+import { User } from "../lib/schema";
+import { loginUserSchema, validateData } from "../lib/validation";
+import { comparePassword, generateToken, hashPassword } from "../lib/auth";
+import { createUserSchema } from "../lib/validation";
 
 /**
  * Sign up a new user
@@ -65,7 +65,8 @@ export const signin = async (req: Request, res: Response) => {
     }
 
     // Find user by email
-    const user = await User.findOne({ email: (result.data as any).email }).select("+password");
+    const email = (result.data as any).email.toLowerCase();
+    const user = await User.findOne({ email }).select("+password");
     if (!user) {
       return res.status(401).json({ error: "Invalid email or password" });
     }

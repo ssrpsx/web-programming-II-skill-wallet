@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { CheckCircle2, AlertCircle } from "lucide-react"
 import type { Subject, Question } from "@/lib/questions"
-import { submitTestResult } from "@/lib/actions/verifications"
+import { submitQuiz } from "@/lib/actions/verifications"
 
 interface TestQuizProps {
   subject: Subject
@@ -57,7 +57,10 @@ export function TestQuiz({ subject, verificationId }: TestQuizProps) {
 
     if (verificationId) {
       try {
-        await submitTestResult(verificationId, answerArray)
+        const result = await submitQuiz(verificationId, answerArray)
+        if (!result.success) {
+          throw new Error(result.error)
+        }
       } catch (error) {
         console.error("Failed to submit test result to server:", error)
         alert(error instanceof Error ? error.message : "Failed to submit results")

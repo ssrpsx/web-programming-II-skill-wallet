@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
-import { Verification, Skill } from "@/lib/schema";
-import { createVerificationSchema, updateVerificationSchema, submitAnswersSchema, completeLevelSchema, verificationLevels, validateData } from "@/lib/validation";
-import { generateMockQuestions } from "@/lib/mockQuestions";
+import { Verification, Skill, User } from "../lib/schema";
+import { createVerificationSchema, updateVerificationSchema, submitAnswersSchema, completeLevelSchema, verificationLevels, validateData } from "../lib/validation";
+import { generateMockQuestions } from "../lib/mockQuestions";
 
 export const createVerification = async (req: Request, res: Response) => {
   try {
@@ -56,7 +56,10 @@ export const createVerification = async (req: Request, res: Response) => {
 
 export const getAllVerifications = async (req: Request, res: Response) => {
   try {
-    const verifications = await Verification.find().populate("userId").populate("skillId");
+    const verifications = await Verification.find()
+      .populate("userId")
+      .populate("skillId")
+      .populate("levelData.verifiedBy");
     res.json(verifications);
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Failed to fetch verifications";
@@ -68,7 +71,8 @@ export const getVerificationById = async (req: Request, res: Response) => {
   try {
     const verification = await Verification.findById(req.params.id)
       .populate("userId")
-      .populate("skillId");
+      .populate("skillId")
+      .populate("levelData.verifiedBy");
     if (!verification) return res.status(404).json({ error: "Verification not found" });
     res.json(verification);
   } catch (error: unknown) {
@@ -249,11 +253,7 @@ export const completeLevel = async (req: Request, res: Response) => {
     // Auto-create next level ONLY IF completed
     if (data.status === "completed") {
       if (req.params.level === "p2p_interview") {
-        // TASK 10: ระบบ interview ทำเหมือนกับ p2p แต่เป็น user ที่มียศ interviewer เท่านั้น
-        // Mocking the random selection of 2 interviewers
-        const scheduledTime = new Date();
-        scheduledTime.setDate(scheduledTime.getDate() + 2);
-
+        // Create the interview level entry. The specific interviewer will be assigned via initiateInterview
         const interviewRooms = [
           process.env.DISCORD_INTERVIEW_ROOM_1,
           process.env.DISCORD_INTERVIEW_ROOM_2,
@@ -268,9 +268,7 @@ export const completeLevel = async (req: Request, res: Response) => {
           link: selectedRoom,
         });
 
-        console.log(`[EMAIL MOCK - INTERVIEW] สุ่มเลือก Interviewer 2 คน`);
-        console.log(`[EMAIL MOCK - INTERVIEW] ส่งอีเมลแจ้งเตือน Interview ในวันที่ ${scheduledTime.toLocaleString()}`);
-        console.log(`[EMAIL MOCK - INTERVIEW] ลิ้งก์ Discord ห้องที่ว่าง: ${selectedRoom}`);
+        console.log(`[INTERVIEW] Level created. User needs to initiate interview to be assigned a ranked interviewer.`);
       }
     }
 
@@ -287,6 +285,23 @@ export const initiateP2P = async (req: Request, res: Response) => {
     const verification = await Verification.findById(req.params.id).populate("skillId").populate("userId");
     if (!verification) return res.status(404).json({ error: "Verification not found" });
 
+    let p2pLevel = verification.levelData.find(l => l.level === "p2p_interview");
+    
+    // Cooldown check for P2P (2 days)
+    if (p2pLevel && p2pLevel.status === "failed" && p2pLevel.verifiedAt) {
+      const lastFailedAt = new Date(p2pLevel.verifiedAt).getTime();
+      const twoDays = 2 * 24 * 60 * 60 * 1000;
+      const now = Date.now();
+      
+      if (now - lastFailedAt < twoDays) {
+        const remainingMs = twoDays - (now - lastFailedAt);
+        const remainingHours = Math.ceil(remainingMs / (1000 * 60 * 60));
+        return res.status(403).json({ 
+          error: `Cooldown active. Please wait ${remainingHours} more hours before retrying P2P.` 
+        });
+      }
+    }
+
     const skill = verification.skillId as any;
     const user = verification.userId as any;
 
@@ -297,17 +312,24 @@ export const initiateP2P = async (req: Request, res: Response) => {
     const skillId = skill._id;
     const currentUserId = user._id;
 
-    // Find users who have completed 'choice' level for this skill
-    const potentialPeers = await Verification.find({
+    // Find users who have completed 'p2p_interview' or 'interview' level for this skill
+    // and exclude those with role 'interviewer' (they only do final interviews)
+    const potentialPeerVerifications = await Verification.find({
       skillId: skillId,
       userId: { $ne: currentUserId },
       "levelData": {
         $elemMatch: {
-          level: "choice",
+          level: { $in: ["p2p_interview", "interview"] },
           status: "completed"
         }
       }
-    }).populate("userId");
+    }).populate({
+      path: "userId",
+      match: { role: "user" } // Only include users, not interviewers
+    });
+
+    // Filter out verifications where the populated userId is null (didn't match role 'user')
+    const potentialPeers = potentialPeerVerifications.filter(v => v.userId !== null);
 
     if (potentialPeers.length === 0) {
       return res.status(400).json({ error: "No verified peers found for this skill. At least one other user must pass Level 1 to be a peer." });
@@ -331,7 +353,6 @@ export const initiateP2P = async (req: Request, res: Response) => {
     const selectedRoom = p2pRooms[Math.floor(Math.random() * p2pRooms.length)] || process.env.DISCORD_JOIN_LINK || "https://discord.gg/skillcollection";
 
     // Find or update the P2P level
-    let p2pLevel = verification.levelData.find(l => l.level === "p2p_interview");
     if (!p2pLevel) {
        p2pLevel = {
          level: "p2p_interview",
@@ -362,6 +383,75 @@ export const initiateP2P = async (req: Request, res: Response) => {
   }
 };
 
+export const initiateInterview = async (req: Request, res: Response) => {
+  try {
+    const verification = await Verification.findById(req.params.id).populate("skillId").populate("userId");
+    if (!verification) return res.status(404).json({ error: "Verification not found" });
+
+    // Find the interview level
+    let interviewLevel = verification.levelData.find(l => l.level === "interview");
+    if (!interviewLevel) {
+      return res.status(400).json({ error: "Interview level not found. Must pass P2P first." });
+    }
+
+    // Cooldown check for interview (3 days)
+    if (interviewLevel.status === "failed" && interviewLevel.verifiedAt) {
+      const lastFailedAt = new Date(interviewLevel.verifiedAt).getTime();
+      const threeDays = 3 * 24 * 60 * 60 * 1000;
+      const now = Date.now();
+      
+      if (now - lastFailedAt < threeDays) {
+        const remainingMs = threeDays - (now - lastFailedAt);
+        const remainingHours = Math.ceil(remainingMs / (1000 * 60 * 60));
+        return res.status(403).json({ 
+          error: `Cooldown active. Please wait ${remainingHours} more hours before retrying the interview.` 
+        });
+      }
+    }
+
+    // Find available interviewers with rank
+    const availableInterviewers = await User.find({
+      role: "interviewer",
+      rank: { $ne: "", $exists: true }
+    });
+
+    if (availableInterviewers.length === 0) {
+      return res.status(400).json({ error: "No ranked interviewers found. Please contact support." });
+    }
+
+    // Randomly select 1 interviewer
+    const randomInterviewer = availableInterviewers[Math.floor(Math.random() * availableInterviewers.length)];
+
+    // Select a random room
+    const interviewRooms = [
+      process.env.DISCORD_INTERVIEW_ROOM_1,
+      process.env.DISCORD_INTERVIEW_ROOM_2,
+      process.env.DISCORD_INTERVIEW_ROOM_3
+    ].filter(Boolean);
+    
+    const selectedRoom = interviewRooms[Math.floor(Math.random() * interviewRooms.length)] || process.env.DISCORD_JOIN_LINK || "https://discord.gg/skillcollection";
+
+    interviewLevel.verifiedBy = randomInterviewer._id;
+    interviewLevel.link = selectedRoom;
+    interviewLevel.status = "pending"; 
+
+    await verification.save();
+
+    console.log(`[INTERVIEW] Assigned ${randomInterviewer.name} (${randomInterviewer.rank}) to verification ${verification._id}`);
+
+    res.json({
+      message: "Interview initiated successfully. Please coordinate with the interviewer on Discord.",
+      interviewerName: randomInterviewer.name,
+      interviewerRank: randomInterviewer.rank,
+      verification
+    });
+  } catch (error: unknown) {
+    console.error("Error in initiateInterview:", error);
+    const message = error instanceof Error ? error.message : "Failed to initiate Interview";
+    res.status(500).json({ error: message });
+  }
+};
+
 export const retryChoice = async (req: Request, res: Response) => {
   try {
     const verification = await Verification.findById(req.params.id);
@@ -379,7 +469,7 @@ export const retryChoice = async (req: Request, res: Response) => {
       return res.status(409).json({ error: `Choice level is not failed (status: ${choiceLevel.status})` });
     }
 
-    // Cooldown check (24 hours)
+    // Cooldown check (24 hours for Choice)
     if (choiceLevel.verifiedAt) {
       const lastFailedAt = new Date(choiceLevel.verifiedAt).getTime();
       const oneDay = 24 * 60 * 60 * 1000;
@@ -389,7 +479,7 @@ export const retryChoice = async (req: Request, res: Response) => {
         const remainingMs = oneDay - (now - lastFailedAt);
         const remainingHours = Math.ceil(remainingMs / (1000 * 60 * 60));
         return res.status(403).json({ 
-          error: `Cooldown active. Please wait ${remainingHours} more hours before retrying.` 
+          error: `Cooldown active. Please wait ${remainingHours} more hours before retrying the test.` 
         });
       }
     }
@@ -415,3 +505,4 @@ export const retryChoice = async (req: Request, res: Response) => {
     res.status(500).json({ error: message });
   }
 };
+

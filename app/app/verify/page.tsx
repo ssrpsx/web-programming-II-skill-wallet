@@ -102,10 +102,14 @@ export default async function VerifyPage() {
       }
 
       // Map backend status to frontend status
-      let status: "available" | "finished" | "waiting" | "failed" =
-        "waiting"
+      let status: "available" | "finished" | "waiting" | "failed" | "pending" = "waiting"
+      
       if (levelData.status === "pending") {
-        status = "available"
+        if (levelData.verifiedBy) {
+          status = "pending" // Pending Review (Assigned)
+        } else {
+          status = "available" // Ready to start
+        }
       } else if (levelData.status === "completed") {
         status = "finished"
       } else if (levelData.status === "failed") {

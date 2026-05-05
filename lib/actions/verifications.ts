@@ -7,61 +7,41 @@ import { revalidatePath } from "next/cache"
 export async function submitQuiz(
   verificationId: string,
   answers: string[]
-): Promise<SubmitResponse> {
-  return apiFetch<SubmitResponse>(
-    `/verifications/${verificationId}/submit`,
-    {
-      method: "POST",
-      body: JSON.stringify({ answers }),
-    }
-  )
+): Promise<{ success: boolean, passed?: boolean, score?: number, error?: string }> {
+  try {
+    const response = await apiFetch<SubmitResponse>(
+      `/verifications/${verificationId}/submit`,
+      {
+        method: "POST",
+        body: JSON.stringify({ answers }),
+      }
+    )
+    revalidatePath("/app")
+    revalidatePath("/app/verify")
+    return { success: true, passed: response.passed, score: response.score }
+  } catch (e: unknown) {
+    console.error("submitQuiz failed:", e)
+    return { success: false, error: (e as Error).message }
+  }
 }
 
 export async function retryQuiz(
   verificationId: string
-): Promise<Verification> {
-  return apiFetch<Verification>(
-    `/verifications/${verificationId}/retry`,
-    {
-      method: "POST",
-      body: "{}",
-    }
-  )
-}
-
-export async function createVerification(
-  _prevState: { error?: string },
-  formData: FormData
-): Promise<{ error?: string }> {
-  const userId = formData.get("userId") as string
-  const skillId = formData.get("skillId") as string
-
+): Promise<{ success: boolean, verification?: Verification, error?: string }> {
   try {
-    await apiFetch<Verification>("/verifications", {
-      method: "POST",
-      body: JSON.stringify({ userId, skillId }),
-    })
+    const response = await apiFetch<Verification>(
+      `/verifications/${verificationId}/retry`,
+      {
+        method: "POST",
+        body: "{}",
+      }
+    )
+    revalidatePath("/app")
     revalidatePath("/app/verify")
-    return {}
+    return { success: true, verification: response }
   } catch (e: unknown) {
-    return { error: (e as Error).message }
-  }
-}
-
-export async function submitTestResult(
-  verificationId: string,
-  answers: string[]
-): Promise<SubmitResponse> {
-  try {
-    const response = await apiFetch<SubmitResponse>(`/verifications/${verificationId}/submit`, {
-      method: "POST",
-      body: JSON.stringify({ answers }),
-    });
-    revalidatePath("/app");
-    revalidatePath("/app/verify");
-    return response;
-  } catch (e: unknown) {
-    throw e;
+    console.error("retryQuiz failed:", e)
+    return { success: false, error: (e as Error).message }
   }
 }
 
@@ -80,11 +60,13 @@ export async function updateLevelStatus(
       }
     )
     revalidatePath("/app")
+    revalidatePath("/app/verify")
     return response
   } catch (e: unknown) {
     throw e
   }
 }
+
 export async function createNewVerificationByTitle(
   userId: string,
   skillTitle: string
@@ -111,9 +93,28 @@ export async function initiateP2P(verificationId: string): Promise<{ success: bo
       }
     )
     revalidatePath("/app")
+    revalidatePath("/app/verify")
     return { success: true, peerName: response.peerName }
   } catch (e: unknown) {
     console.error("initiateP2P failed:", e)
     return { success: false, error: (e as Error).message }
   }
 }
+
+export async function initiateInterview(verificationId: string): Promise<{ success: boolean, interviewerName?: string, interviewerRank?: string, error?: string }> {
+  try {
+    const response = await apiFetch<{ interviewerName: string, interviewerRank: string, verification: Verification }>(
+      `/verifications/${verificationId}/interview/initiate`,
+      {
+        method: "POST",
+      }
+    )
+    revalidatePath("/app")
+    revalidatePath("/app/verify")
+    return { success: true, interviewerName: response.interviewerName, interviewerRank: response.interviewerRank }
+  } catch (e: unknown) {
+    console.error("initiateInterview failed:", e)
+    return { success: false, error: (e as Error).message }
+  }
+}
+

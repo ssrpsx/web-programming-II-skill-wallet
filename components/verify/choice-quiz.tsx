@@ -5,14 +5,17 @@ import { useRouter } from "next/navigation"
 import { submitQuiz, retryQuiz } from "@/lib/actions/verifications"
 import { Button } from "@/components/ui/button"
 import { CheckCircle2 } from "lucide-react"
-import type { ChoiceQuestion } from "@/lib/api/types"
+import type { ChoiceQuestion, Verification } from "@/lib/api/types"
 
 interface ChoiceQuizProps {
-  verificationId: string
+  verification: Verification
   questions: ChoiceQuestion[]
 }
 
-export function ChoiceQuiz({ verificationId, questions }: ChoiceQuizProps) {
+export function ChoiceQuiz({ verification, questions }: ChoiceQuizProps) {
+  const verificationId = verification._id
+  const choiceLevel = verification.levelData.find(l => l.level === "choice")
+  
   const [quizStarted, setQuizStarted] = useState(false)
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
@@ -21,7 +24,21 @@ export function ChoiceQuiz({ verificationId, questions }: ChoiceQuizProps) {
     passed: boolean
     score: number
   } | null>(null)
-  const [error, setError] = useState<string | null>(null)
+
+  const [error, setError] = useState<string | null>(() => {
+    if (choiceLevel?.status === "failed" && choiceLevel.verifiedAt) {
+      const lastFailedAt = new Date(choiceLevel.verifiedAt).getTime();
+      const oneDay = 24 * 60 * 60 * 1000;
+      const now = Date.now();
+      
+      if (now - lastFailedAt < oneDay) {
+        const remainingMs = oneDay - (now - lastFailedAt);
+        const remainingHours = Math.ceil(remainingMs / (1000 * 60 * 60));
+        return `Cooldown active. Please wait ${remainingHours} more hours before retrying the test.`;
+      }
+    }
+    return null
+  })
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
 
@@ -50,49 +67,61 @@ export function ChoiceQuiz({ verificationId, questions }: ChoiceQuizProps) {
     } else {
       // Submit quiz
       startTransition(async () => {
-        try {
-          const result = await submitQuiz(verificationId, newAnswers)
+        const result = await submitQuiz(verificationId, newAnswers)
+        if (result.success) {
           setSubmitResult({
-            passed: result.passed,
-            score: result.score,
+            passed: result.passed!,
+            score: result.score!,
           })
-        } catch (e: unknown) {
-          setError((e as Error).message)
+        } else {
+          setError(result.error || "Failed to submit quiz")
         }
       })
     }
   }
 
   const handleRetry = async () => {
-    try {
-      await retryQuiz(verificationId)
-      setQuizStarted(false)
-      setCurrentQuestion(0)
-      setSelectedOption(null)
-      setSelectedAnswers([])
-      setSubmitResult(null)
-      setError(null)
-      router.refresh()
-    } catch (e: unknown) {
-      setError((e as Error).message)
-    }
+    startTransition(async () => {
+      const result = await retryQuiz(verificationId)
+      if (result.success) {
+        setQuizStarted(false)
+        setCurrentQuestion(0)
+        setSelectedOption(null)
+        setSelectedAnswers([])
+        setSubmitResult(null)
+        setError(null)
+        router.refresh()
+      } else {
+        setError(result.error || "Failed to retry quiz")
+      }
+    })
   }
 
   // Intro Screen
   if (!quizStarted) {
     return (
-      <div className="max-w-md mx-auto text-center py-12">
-        <h1 className="text-3xl font-bold mb-4">Quiz Test</h1>
-        <p className="text-gray-600 mb-8">
-          A series of questions will help you demonstrate your knowledge. Answer
-          all questions to complete the assessment.
-        </p>
-        <Button
-          onClick={handleStartQuiz}
-          className="bg-black text-white hover:bg-gray-800"
-        >
-          Start Quiz
-        </Button>
+      <div className="max-w-md mx-auto text-center py-12 space-y-8 animate-in fade-in duration-700">
+        <div className="bg-white p-8 rounded-3xl border shadow-sm space-y-6">
+          <h1 className="text-3xl font-bold text-gray-900">Quiz Assessment</h1>
+          <p className="text-gray-600">
+            A series of questions will help you demonstrate your knowledge. Answer
+            all questions to complete the assessment.
+          </p>
+
+          {error && (
+            <div className="bg-red-50 border border-red-100 p-4 rounded-xl text-red-800 text-sm font-medium animate-in slide-in-from-top duration-500">
+              {error}
+            </div>
+          )}
+
+          <Button
+            onClick={handleStartQuiz}
+            disabled={!!error}
+            className="w-full h-12 text-lg bg-black text-white hover:bg-gray-800"
+          >
+            {error ? "Test Locked" : "Start Quiz"}
+          </Button>
+        </div>
       </div>
     )
   }
@@ -103,46 +132,84 @@ export function ChoiceQuiz({ verificationId, questions }: ChoiceQuizProps) {
     const score = submitResult.score
 
     return (
-      <div className="max-w-md mx-auto text-center py-12">
-        <h1 className="text-3xl font-bold mb-2">Result</h1>
-        <p className="text-gray-600 mb-4">Score: {Math.round(score)}%</p>
-        {passed ? (
-          <>
-            <p className="text-gray-600 mb-8">
-              Congratulations! You have successfully passed the quiz.
-            </p>
-            <div className="flex justify-center mb-8">
-              <CheckCircle2 size={80} className="text-green-500" />
-            </div>
-            <Button
-              onClick={() => {
-                window.location.href = "/app/verify"
-              }}
-              className="bg-black text-white hover:bg-gray-800"
-            >
-              Continue to Verify Page
-            </Button>
-          </>
-        ) : (
-          <>
-            <p className="text-gray-600 mb-8">
-              Your score is below the passing threshold. Please try again.
-            </p>
-            <div className="flex justify-center mb-8">
-              <div className="w-20 h-20 rounded-full border-4 border-red-500 flex items-center justify-center">
-                <span className="text-2xl font-bold text-red-500">
-                  {Math.round(score)}%
-                </span>
+      <div className="max-w-md mx-auto text-center py-12 space-y-8 animate-in fade-in zoom-in duration-500">
+        <div className={`p-8 rounded-3xl border shadow-sm ${passed ? 'bg-green-50 border-green-100' : 'bg-red-50 border-red-100'}`}>
+          <div className="flex justify-center mb-6">
+            {passed ? (
+              <div className="bg-green-500 p-4 rounded-full">
+                <CheckCircle2 size={48} className="text-white" />
               </div>
-            </div>
+            ) : (
+              <div className="bg-red-500 p-4 rounded-full">
+                <svg className="w-12 h-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </div>
+            )}
+          </div>
+          
+          <h1 className={`text-3xl font-bold mb-2 ${passed ? 'text-green-900' : 'text-red-900'}`}>
+            {passed ? 'Assessment Passed!' : 'Assessment Failed'}
+          </h1>
+          <p className={`${passed ? 'text-green-700' : 'text-red-700'} mb-6`}>
+            Your score: <span className="font-bold text-2xl ml-1">{Math.round(score)}%</span>
+          </p>
+
+          <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-white/50 shadow-inner mb-6 text-sm">
+            {passed ? (
+              <p className="text-green-800">
+                Congratulations! You've demonstrated sufficient knowledge to proceed to the next level of verification.
+              </p>
+            ) : (
+              <div className="space-y-4">
+                <p className="text-red-800">
+                  Your score was below the passing threshold. Review the material and try again after the cooldown period.
+                </p>
+                {error && (
+                  <div className="bg-red-100 p-3 rounded-lg border border-red-200 text-red-900 font-medium animate-pulse">
+                    {error}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className="space-y-3">
+            {passed ? (
+              <Button
+                onClick={() => {
+                  window.location.href = "/app/verify"
+                }}
+                className="w-full h-12 text-lg bg-green-600 hover:bg-green-700 text-white"
+              >
+                Continue to Next Level
+              </Button>
+            ) : (
+              <Button
+                onClick={handleRetry}
+                disabled={isPending}
+                className="w-full h-12 text-lg bg-red-600 hover:bg-red-700 text-white"
+              >
+                {isPending ? "Resetting Test..." : "Try Again Now"}
+              </Button>
+            )}
+            
             <Button
-              onClick={handleRetry}
-              disabled={isPending}
-              className="bg-black text-white hover:bg-gray-800"
+              variant="outline"
+              onClick={() => {
+                window.location.href = "/app"
+              }}
+              className="w-full h-12"
             >
-              {isPending ? "Retrying..." : "Try Again"}
+              Back to Dashboard
             </Button>
-          </>
+          </div>
+        </div>
+
+        {!passed && !error && (
+          <p className="text-gray-500 text-xs">
+            * Note: Retrying will reset your current progress and generate new questions.
+          </p>
         )}
       </div>
     )

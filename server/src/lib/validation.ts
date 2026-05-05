@@ -23,22 +23,6 @@ export type CreateUserInput = z.infer<typeof createUserSchema>;
 export type UpdateUserInput = z.infer<typeof updateUserSchema>;
 export type LoginUserInput = z.infer<typeof loginUserSchema>;
 
-// Collection Validation Schemas
-export const createCollectionSchema = z.object({
-  title: z.string().min(1, "Title is required").trim(),
-  description: z.string().trim().optional(),
-  userId: z.string().min(1, "User ID is required"),
-  skills: z.array(z.string()).optional().default([]),
-});
-
-export const updateCollectionSchema = z.object({
-  title: z.string().min(1, "Title is required").trim().optional(),
-  description: z.string().trim().optional(),
-  skills: z.array(z.string()).optional(),
-});
-
-export type CreateCollectionInput = z.infer<typeof createCollectionSchema>;
-export type UpdateCollectionInput = z.infer<typeof updateCollectionSchema>;
 
 // Skill Validation Schema
 

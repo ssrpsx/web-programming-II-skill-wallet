@@ -29,14 +29,16 @@ const statusColorMap: Record<VerifyStatus, string> = {
     available: 'bg-blue-100 text-blue-800',
     finished: 'bg-green-100 text-green-800',
     waiting: 'bg-yellow-100 text-yellow-800',
-    failed: 'bg-red-100 text-red-800'
+    failed: 'bg-red-100 text-red-800',
+    pending: 'bg-indigo-100 text-indigo-800'
 }
 
 const statusLabelMap: Record<VerifyStatus, string> = {
     available: 'Available',
     finished: 'Finished',
-    waiting: 'Waiting',
-    failed: 'Failed'
+    waiting: 'Locked',
+    failed: 'Failed',
+    pending: 'Pending Review'
 }
 
 export function VerifyItemComponent({ item, routePath: propRoutePath }: VerifyItemComponentProps) {
@@ -44,17 +46,19 @@ export function VerifyItemComponent({ item, routePath: propRoutePath }: VerifyIt
     const [isRetrying, setIsRetrying] = useState(false)
 
     // For failed status, call retry API then navigate to choice
+    // For failed status, handle based on level
     const handleFailedClick = async (e: React.MouseEvent) => {
         e.preventDefault()
-        setIsRetrying(true)
-        try {
-            await retryQuiz(item.id)
-            router.push(`/verify/${item.id}/choice`)
-        } catch (error) {
-            console.error('Retry failed:', error)
-            alert(error instanceof Error ? error.message : 'Failed to retry. Please wait for the cooldown.')
-            setIsRetrying(false)
+        
+        // If it's Level 2 or 3, just navigate to the page
+        if (propRoutePath?.includes('peartopear') || propRoutePath?.includes('interview')) {
+            router.push(propRoutePath)
+            return
         }
+
+        // For Level 1, navigate to the choice page
+        // The ChoiceQuiz component will handle showing its own beautiful cooldown UI
+        router.push(`/verify/${item.id}/choice`)
     }
 
     // For non-failed status, determine route path

@@ -22,9 +22,12 @@ export function TaskReviewList({ verifications, currentUser }: TaskReviewListPro
     return vUserId !== currentUser._id
   }).flatMap(v => 
     v.levelData
-      .filter(l => l.status === "pending" && 
-              (l.level === "p2p_interview" || l.level === "interview") &&
-              l.verifiedBy === currentUser._id)
+      .filter(l => {
+        const isPending = l.status === "pending" && (l.level === "p2p_interview" || l.level === "interview")
+        if (!isPending || !l.verifiedBy) return false
+        const verifiedById = typeof l.verifiedBy === "string" ? l.verifiedBy : (l.verifiedBy as any)._id
+        return verifiedById === currentUser._id
+      })
       .map(l => ({ verification: v, level: l }))
   )
 

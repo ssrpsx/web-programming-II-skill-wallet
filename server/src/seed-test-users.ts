@@ -34,94 +34,68 @@ export async function runSeed(shouldDisconnect = true) {
       console.warn(`Questions file not found at ${questionsPath}`);
     }
 
-    // 1. Create Interviewer
-    const interviewerEmail = "interviewer@test.com";
-    let interviewer = await User.findOne({ email: interviewerEmail });
-    const defaultHashedPassword = await hashPassword("password123");
+    // 1. Create Interviewer from ENV
+    const interviewerEmail = process.env.MOCK_INTERVIEWER_EMAIL?.toLowerCase();
+    let interviewer;
+    if (interviewerEmail) {
+      interviewer = await User.findOne({ email: interviewerEmail });
+      const interviewerHashedPassword = await hashPassword(process.env.MOCK_INTERVIEWER_PASSWORD || "password123");
 
-    if (!interviewer) {
-      interviewer = await User.create({
-        name: "Test Interviewer",
-        email: interviewerEmail,
-        password: defaultHashedPassword,
-        role: "interviewer",
-      });
-      console.log("Created interviewer:", interviewerEmail);
-    } else {
-      interviewer.password = defaultHashedPassword;
-      await interviewer.save();
-      console.log("Updated interviewer password");
-    }
-
-    // 2. Create 2 Users for P2P testing
-    const p2pUserEmails = ["user1@test.com", "user2@test.com"];
-    for (const email of p2pUserEmails) {
-      let user = await User.findOne({ email: email });
-      if (!user) {
-        user = await User.create({
-          name: `Test P2P User ${email.split("@")[0].slice(-1)}`,
-          email: email,
-          password: defaultHashedPassword,
-          role: "user",
+      if (!interviewer) {
+        interviewer = await User.create({
+          name: process.env.MOCK_INTERVIEWER_NAME || "Senior Interviewer",
+          email: interviewerEmail,
+          password: interviewerHashedPassword,
+          role: "interviewer",
+          rank: process.env.MOCK_INTERVIEWER_RANK || "Senior Staff",
         });
-        console.log("Created user:", email);
+        console.log("Created interviewer:", interviewerEmail);
       } else {
-        user.password = defaultHashedPassword;
-        await user.save();
-        console.log("Updated user password:", email);
-      }
-
-      // Ensure they have 1 skill verified at Level 1 (Choice)
-      let skill = await Skill.findOne({ title: "Object-Oriented Programming" });
-      if (skill) {
-        let verification = await Verification.findOne({ userId: user._id, skillId: skill._id });
-        if (!verification) {
-          verification = await Verification.create({
-            userId: user._id,
-            skillId: skill._id,
-            levelData: [
-              {
-                level: "choice",
-                status: "completed",
-                verifiedAt: new Date(),
-                choice: {
-                  questions: [],
-                  score: 100,
-                }
-              }
-            ]
-          });
-          console.log(`Verified skill for ${email}`);
-        }
+        interviewer.password = interviewerHashedPassword;
+        interviewer.role = "interviewer";
+        interviewer.rank = process.env.MOCK_INTERVIEWER_RANK || "Senior Staff";
+        await interviewer.save();
+        console.log("Updated interviewer:", interviewerEmail);
       }
     }
 
-    // 3. Create Super User from ENV
-    const superEmail = process.env.MOCK_USER_GMAIL?.toLowerCase();
-    if (superEmail) {
+    // 2. Create 2 Super Users from ENV
+    const superEmails = [
+      process.env.MOCK_SUPERUSER1_EMAIL?.toLowerCase(),
+      process.env.MOCK_SUPERUSER2_EMAIL?.toLowerCase(),
+    ].filter(Boolean);
+
+    for (const superEmail of superEmails) {
+      if (!superEmail) continue;
       console.log(`Checking for super user: ${superEmail}`);
       let superUser = await User.findOne({ email: superEmail });
-      const superHashedPassword = await hashPassword(process.env.MOCK_USER_PASSWORD || "password123");
+      
+      // Determine password and name based on which superuser it is
+      const isUser1 = superEmail === process.env.MOCK_SUPERUSER1_EMAIL?.toLowerCase();
+      const pwd = isUser1 ? process.env.MOCK_SUPERUSER1_PASSWORD : process.env.MOCK_SUPERUSER2_PASSWORD;
+      const name = isUser1 ? process.env.MOCK_SUPERUSER1_NAME : process.env.MOCK_SUPERUSER2_NAME;
+      
+      const superHashedPassword = await hashPassword(pwd || "password123");
 
       if (!superUser) {
         superUser = await User.create({
-          name: `${process.env.MOCK_USER_FIRSTNAME || "Super"} ${process.env.MOCK_USER_LASTNAME || "User"}`,
+          name: name || "Super User",
           email: superEmail,
           password: superHashedPassword,
           role: "user",
-          birthDate: process.env.MOCK_USER_BIRTHDAY ? new Date(process.env.MOCK_USER_BIRTHDAY) : undefined,
         });
         console.log("Created super user:", superEmail);
       } else {
         superUser.password = superHashedPassword;
-        superUser.name = `${process.env.MOCK_USER_FIRSTNAME || "Super"} ${process.env.MOCK_USER_LASTNAME || "User"}`;
+        superUser.name = name || "Super User";
+        superUser.role = "user";
         await superUser.save();
-        console.log("Updated super user credentials:", superEmail);
+        console.log("Updated super user:", superEmail);
       }
 
-      // Verify ALL skills for super user at Level 3
+      // Verify ALL skills for super users up to P2P level (since they cannot interview)
       const skills = await Skill.find();
-      console.log(`Verifying all ${skills.length} skills for super user...`);
+      console.log(`Verifying all ${skills.length} skills for super user ${superEmail} (Level 2/P2P)...`);
       for (const skill of skills) {
         let verification = await Verification.findOne({ userId: superUser._id, skillId: skill._id });
         if (!verification) {
@@ -140,19 +114,13 @@ export async function runSeed(shouldDisconnect = true) {
                 status: "completed",
                 verifiedAt: new Date(),
                 verifiedBy: interviewer?._id
-              },
-              {
-                level: "interview",
-                status: "completed",
-                verifiedAt: new Date(),
-                verifiedBy: interviewer?._id
               }
             ]
           });
-          console.log(`Fully verified skill '${skill.title}' for super user`);
+          console.log(`P2P verified skill '${skill.title}' for super user ${superEmail}`);
         } else {
-          // Ensure all 3 levels are completed if verification already exists
-          const levels = ["choice", "p2p_interview", "interview"];
+          // Ensure choice and p2p are completed
+          const levels = ["choice", "p2p_interview"];
           let modified = false;
           levels.forEach(lvl => {
             let levelData = verification.levelData.find(l => l.level === lvl);
@@ -174,13 +142,32 @@ export async function runSeed(shouldDisconnect = true) {
           });
           if (modified) {
             await verification.save();
-            console.log(`Updated verification for '${skill.title}' for super user`);
+            console.log(`Updated verification for '${skill.title}' for super user ${superEmail}`);
           }
         }
       }
-    } else {
-      console.log("MOCK_USER_GMAIL not found in environment, skipping super user creation.");
     }
+
+    // 3. (Optional) Verify interviewer for all skills up to Level 3
+    if (interviewer) {
+      const skills = await Skill.find();
+      for (const skill of skills) {
+        let verification = await Verification.findOne({ userId: interviewer._id, skillId: skill._id });
+        if (!verification) {
+          await Verification.create({
+            userId: interviewer._id,
+            skillId: skill._id,
+            levelData: [
+              { level: "choice", status: "completed", verifiedAt: new Date(), choice: { questions: [], score: 100 } },
+              { level: "p2p_interview", status: "completed", verifiedAt: new Date(), verifiedBy: interviewer._id },
+              { level: "interview", status: "completed", verifiedAt: new Date(), verifiedBy: interviewer._id }
+            ]
+          });
+        }
+      }
+      console.log("Ensured interviewer is fully verified for all skills.");
+    }
+
 
     console.log("Seeding completed successfully!");
   } catch (error) {

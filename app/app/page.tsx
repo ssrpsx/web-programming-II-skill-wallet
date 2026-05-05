@@ -49,7 +49,12 @@ export default async function AppPage() {
     const vUserId = typeof v.userId === "string" ? v.userId : v.userId._id
     return vUserId !== currentUser._id
   }).reduce((count, v) => {
-    return count + v.levelData.filter((l) => l.status === "pending" && (l.level === "p2p_interview" || l.level === "interview")).length
+    return count + v.levelData.filter((l) => {
+      const isPending = l.status === "pending" && (l.level === "p2p_interview" || l.level === "interview")
+      if (!isPending || !l.verifiedBy) return false
+      const verifiedById = typeof l.verifiedBy === "string" ? l.verifiedBy : (l.verifiedBy as any)._id
+      return verifiedById === currentUser._id
+    }).length
   }, 0)
 
   // Build skill progress map

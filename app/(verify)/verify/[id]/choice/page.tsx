@@ -31,5 +31,5 @@ export default async function ChoicePage({ params }: ChoicePageProps) {
     return <div className="text-center py-12">No questions available</div>
   }
 
-  return <ChoiceQuiz verificationId={id} questions={questions} />
+  return <ChoiceQuiz verification={verification} questions={questions} />
 }

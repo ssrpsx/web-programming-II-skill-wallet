@@ -6,18 +6,9 @@ export interface IUser extends Document {
   password: string;
   name: string;
   role: "user" | "interviewer";
+  rank?: string;
   photo?: string;
   birthDate?: Date;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-// Collection Interface
-export interface ICollection extends Document {
-  title: string;
-  description: string;
-  userId: mongoose.Types.ObjectId;
-  skills: mongoose.Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -47,8 +38,6 @@ export interface ILevelData {
     userAnswers?: string[];
     score?: number;
   };
-  userAnswers?: string[];
-  score?: number;
   _id?: mongoose.Types.ObjectId;
 }
 
@@ -87,39 +76,16 @@ const userSchema = new Schema<IUser>(
       enum: ["user", "interviewer"],
       default: "user",
     },
+    rank: {
+      type: String,
+      default: "",
+    },
     photo: {
       type: String,
     },
     birthDate: {
       type: Date,
     },
-  },
-  { timestamps: true }
-);
-
-// Collection Schema
-const collectionSchema = new Schema<ICollection>(
-  {
-    title: {
-      type: String,
-      required: [true, "Title is required"],
-      trim: true,
-    },
-    description: {
-      type: String,
-      trim: true,
-    },
-    userId: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: [true, "User ID is required"],
-    },
-    skills: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Skill",
-      },
-    ],
   },
   { timestamps: true }
 );
@@ -206,6 +172,5 @@ const verificationSchema = new Schema<IVerification>(
 
 // Create Models
 export const User = mongoose.model<IUser>("User", userSchema);
-export const Collection = mongoose.model<ICollection>("Collection", collectionSchema);
 export const Skill = mongoose.model<ISkill>("Skill", skillSchema);
 export const Verification = mongoose.model<IVerification>("Verification", verificationSchema);

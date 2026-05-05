@@ -1,4 +1,4 @@
-export type VerifyStatus = 'available' | 'finished' | 'waiting' | 'failed'
+export type VerifyStatus = 'available' | 'finished' | 'waiting' | 'failed' | 'pending'
 
 export interface VerifyItem {
     id: string

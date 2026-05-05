@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import { verifyToken, extractToken } from "@/lib/auth";
+import { verifyToken, extractToken } from "../lib/auth";
 
 /**
  * Middleware to verify JWT token

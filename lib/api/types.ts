@@ -3,6 +3,7 @@ export interface User {
   email: string
   name: string
   role: "user" | "interviewer"
+  rank?: string
   photo?: string
   birthDate?: string
 }

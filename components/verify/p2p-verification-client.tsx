@@ -20,14 +20,33 @@ export function P2PVerificationClient({
 }: P2PVerificationClientProps) {
   const [step, setStep] = useState(1) // 1: Join Discord, 2: Instructions & Randomize, 3: Success
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [peerName, setPeerName] = useState("")
-  const [error, setError] = useState("")
-
-  const skillTitle = typeof verification.skillId === "string" ? "Skill" : verification.skillId.title
+  const skillTitle = !verification.skillId || typeof verification.skillId === "string" ? "Skill" : verification.skillId.title
   
   // Check if peer is already assigned
   const p2pLevel = verification.levelData.find(l => l.level === "p2p_interview")
   const isAlreadyInitiated = !!p2pLevel?.verifiedBy && p2pLevel.status === "pending"
+
+  // Initialize state from existing data if available
+  const [peerName, setPeerName] = useState(() => {
+    if (isAlreadyInitiated && typeof p2pLevel.verifiedBy !== "string") {
+      return (p2pLevel.verifiedBy as any).name || "a Peer"
+    }
+    return ""
+  })
+  const [error, setError] = useState(() => {
+    if (p2pLevel?.status === "failed" && p2pLevel.verifiedAt) {
+      const lastFailedAt = new Date(p2pLevel.verifiedAt).getTime();
+      const twoDays = 2 * 24 * 60 * 60 * 1000;
+      const now = Date.now();
+      
+      if (now - lastFailedAt < twoDays) {
+        const remainingMs = twoDays - (now - lastFailedAt);
+        const remainingHours = Math.ceil(remainingMs / (1000 * 60 * 60));
+        return `Cooldown active. Please wait ${remainingHours} more hours before retrying P2P.`;
+      }
+    }
+    return ""
+  })
 
   const handleNextStep = () => {
     setStep(2)
