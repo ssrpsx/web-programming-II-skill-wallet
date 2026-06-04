@@ -1,14 +1,14 @@
 import express from "express"
+import swaggerUi from "swagger-ui-express"
 import { connectDB, disconnectDB, getConnectionStatus } from "./lib/db"
 import { errorHandler, notFoundHandler } from "./middleware/errorHandler"
+import { swaggerSpec } from "./lib/swagger"
 
 // Import routes
 import authRoutes from "./routes/auth"
 import userRoutes from "./routes/users"
 import skillRoutes from "./routes/skills"
 import verificationRoutes from "./routes/verifications"
-import "./lib/oauth" // Initialize passport strategies
-
 import { runSeed } from "./seed-test-users";
 
 const app = express()
@@ -34,6 +34,10 @@ app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
   next();
 });
+
+// Swagger UI
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+app.get("/api/docs.json", (_req, res) => res.json(swaggerSpec))
 
 // Routes
 app.use("/api/auth", authRoutes)

@@ -30,12 +30,13 @@ function SubmitButton() {
     )
 }
 
-export default function SettingsForm({ 
-    userId, 
-    defaultFirstName, 
+export default function SettingsForm({
+    userId,
+    defaultFirstName,
     defaultLastName,
     defaultPhoto,
-    defaultBirthDate
+    defaultBirthDate,
+    isTwoFactorEnabled
 }: SettingsFormProps) {
     const [firstName, setFirstName] = useState(defaultFirstName)
     const [lastName, setLastName] = useState(defaultLastName)

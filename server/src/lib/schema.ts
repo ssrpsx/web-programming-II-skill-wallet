@@ -3,7 +3,7 @@ import mongoose, { Schema, Document } from "mongoose";
 // User Interface
 export interface IUser extends Document {
   email: string;
-  password: string;
+  password: string | undefined;
   name: string;
   role: "user" | "interviewer";
   rank?: string;
@@ -67,9 +67,9 @@ const userSchema = new Schema<IUser>(
     },
     password: {
       type: String,
-      required: [true, "Password is required"],
+      required: [function(this: any) { return !this.oauthProvider; }, "Password is required"],
       minlength: [6, "Password must be at least 6 characters"],
-      select: false, // Don't return password by default
+      select: false,
     },
     name: {
       type: String,
