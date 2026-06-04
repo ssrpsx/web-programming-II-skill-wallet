@@ -7,6 +7,7 @@ import authRoutes from "./routes/auth"
 import userRoutes from "./routes/users"
 import skillRoutes from "./routes/skills"
 import verificationRoutes from "./routes/verifications"
+import "./lib/oauth" // Initialize passport strategies
 
 import { runSeed } from "./seed-test-users";
 

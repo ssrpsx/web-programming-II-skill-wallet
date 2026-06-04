@@ -31,6 +31,7 @@ export default async function SettingsPage() {
       defaultLastName={lastName} 
       defaultPhoto={user?.photo ?? null}
       defaultBirthDate={formattedBirthDate}
+      isTwoFactorEnabled={user?.isTwoFactorEnabled ?? false}
     />
   )
 }

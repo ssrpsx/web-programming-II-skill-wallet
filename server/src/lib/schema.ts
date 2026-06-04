@@ -9,6 +9,11 @@ export interface IUser extends Document {
   rank?: string;
   photo?: string;
   birthDate?: Date;
+  oauthProvider?: string;
+  oauthId?: string;
+  isTwoFactorEnabled: boolean;
+  twoFactorOtp?: string;
+  twoFactorOtpExpires?: Date;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -85,6 +90,24 @@ const userSchema = new Schema<IUser>(
     },
     birthDate: {
       type: Date,
+    },
+    oauthProvider: {
+      type: String,
+    },
+    oauthId: {
+      type: String,
+    },
+    isTwoFactorEnabled: {
+      type: Boolean,
+      default: false,
+    },
+    twoFactorOtp: {
+      type: String,
+      select: false,
+    },
+    twoFactorOtpExpires: {
+      type: Date,
+      select: false,
     },
   },
   { timestamps: true }

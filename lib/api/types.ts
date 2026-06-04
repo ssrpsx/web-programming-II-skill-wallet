@@ -6,6 +6,7 @@ export interface User {
   rank?: string
   photo?: string
   birthDate?: string
+  isTwoFactorEnabled?: boolean
 }
 
 export interface Skill {

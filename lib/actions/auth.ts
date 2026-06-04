@@ -6,16 +6,46 @@ import { apiFetch } from "@/lib/api/server"
 import type { AuthResponse } from "@/lib/api/types"
 
 export async function signIn(
-  prevState: { error?: string },
+  prevState: any,
   formData: FormData
-): Promise<{ error?: string }> {
+): Promise<{ error?: string; requires2FA?: boolean; tempToken?: string }> {
   const email = formData.get("email") as string
   const password = formData.get("password") as string
 
   try {
-    const data = await apiFetch<AuthResponse>("/auth/signin", {
+    const data = await apiFetch<any>("/auth/signin", {
       method: "POST",
       body: JSON.stringify({ email, password }),
+    })
+
+    if (data.requires2FA) {
+      return { requires2FA: true, tempToken: data.tempToken }
+    }
+
+    const cookieStore = await cookies()
+    cookieStore.set("token", data.token, {
+      httpOnly: true,
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7,
+    })
+  } catch (e: unknown) {
+    return { error: (e as Error).message }
+  }
+
+  redirect("/app")
+}
+
+export async function verify2FAAction(
+  prevState: any,
+  formData: FormData
+): Promise<{ error?: string }> {
+  const otp = formData.get("otp") as string
+  const tempToken = formData.get("tempToken") as string
+
+  try {
+    const data = await apiFetch<AuthResponse>("/auth/2fa/verify", {
+      method: "POST",
+      body: JSON.stringify({ otp, tempToken }),
     })
 
     const cookieStore = await cookies()
@@ -89,3 +119,29 @@ export async function updateProfile(
   }
 }
 
+export async function enable2FAAction(): Promise<{ error?: string; success?: boolean; message?: string }> {
+  try {
+    const res = await apiFetch<{ message: string }>("/auth/2fa/enable", {
+      method: "POST",
+    })
+    return { success: true, message: res.message }
+  } catch (e: unknown) {
+    return { error: (e as Error).message }
+  }
+}
+
+export async function confirm2FAAction(
+  prevState: any,
+  formData: FormData
+): Promise<{ error?: string; success?: boolean; message?: string }> {
+  const otp = formData.get("otp") as string
+  try {
+    const res = await apiFetch<{ message: string }>("/auth/2fa/confirm", {
+      method: "POST",
+      body: JSON.stringify({ otp }),
+    })
+    return { success: true, message: res.message }
+  } catch (e: unknown) {
+    return { error: (e as Error).message }
+  }
+}
