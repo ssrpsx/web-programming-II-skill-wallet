@@ -3,12 +3,17 @@ import mongoose, { Schema, Document } from "mongoose";
 // User Interface
 export interface IUser extends Document {
   email: string;
-  password: string;
+  password: string | undefined;
   name: string;
   role: "user" | "interviewer";
   rank?: string;
   photo?: string;
   birthDate?: Date;
+  oauthProvider?: string;
+  oauthId?: string;
+  isTwoFactorEnabled: boolean;
+  twoFactorOtp?: string;
+  twoFactorOtpExpires?: Date;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -62,9 +67,9 @@ const userSchema = new Schema<IUser>(
     },
     password: {
       type: String,
-      required: [true, "Password is required"],
+      required: [function(this: any) { return !this.oauthProvider; }, "Password is required"],
       minlength: [6, "Password must be at least 6 characters"],
-      select: false, // Don't return password by default
+      select: false,
     },
     name: {
       type: String,
@@ -85,6 +90,24 @@ const userSchema = new Schema<IUser>(
     },
     birthDate: {
       type: Date,
+    },
+    oauthProvider: {
+      type: String,
+    },
+    oauthId: {
+      type: String,
+    },
+    isTwoFactorEnabled: {
+      type: Boolean,
+      default: false,
+    },
+    twoFactorOtp: {
+      type: String,
+      select: false,
+    },
+    twoFactorOtpExpires: {
+      type: Date,
+      select: false,
     },
   },
   { timestamps: true }

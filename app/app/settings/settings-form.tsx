@@ -18,6 +18,7 @@ interface SettingsFormProps {
     defaultLastName: string
     defaultPhoto: string | null
     defaultBirthDate: string
+    isTwoFactorEnabled: boolean
 }
 
 function SubmitButton() {
@@ -29,18 +30,40 @@ function SubmitButton() {
     )
 }
 
-export default function SettingsForm({ 
-    userId, 
-    defaultFirstName, 
+export default function SettingsForm({
+    userId,
+    defaultFirstName,
     defaultLastName,
     defaultPhoto,
-    defaultBirthDate
+    defaultBirthDate,
+    isTwoFactorEnabled
 }: SettingsFormProps) {
     const [firstName, setFirstName] = useState(defaultFirstName)
     const [lastName, setLastName] = useState(defaultLastName)
     const [birthDate, setBirthDate] = useState(defaultBirthDate)
     const [photo, setPhoto] = useState<string | null>(defaultPhoto)
+    const [is2FAEnabled, setIs2FAEnabled] = useState(isTwoFactorEnabled)
+    const [showOTPInput, setShowOTPInput] = useState(false)
     const [state, formAction] = useActionState(updateProfile, {})
+    const [confirmState, confirmFormAction] = useActionState(async (prevState: any, formData: FormData) => {
+        const { confirm2FAAction } = await import('@/lib/actions/auth');
+        const result = await confirm2FAAction(prevState, formData);
+        if (result.success) {
+            setIs2FAEnabled(true);
+            setShowOTPInput(false);
+        }
+        return result;
+    }, {})
+
+    const handleEnable2FA = async () => {
+        const { enable2FAAction } = await import('@/lib/actions/auth');
+        const res = await enable2FAAction();
+        if (res.success) {
+            setShowOTPInput(true);
+        } else {
+            alert(res.error || "Failed to initiate 2FA setup");
+        }
+    }
 
     const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
@@ -149,6 +172,41 @@ export default function SettingsForm({
                 </form>
 
                 <Separator />
+                
+                {/* 2FA Section */}
+                <div className="space-y-4">
+                    <h2 className="text-xl font-semibold">Security Settings</h2>
+                    <div className="p-4 border rounded-lg bg-white space-y-4">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <h3 className="font-medium text-gray-900">Two-Factor Authentication (2FA)</h3>
+                                <p className="text-sm text-gray-500">Secure your account with an email OTP.</p>
+                            </div>
+                            {is2FAEnabled ? (
+                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    Enabled
+                                </span>
+                            ) : (
+                                <Button variant="outline" onClick={handleEnable2FA} disabled={showOTPInput}>
+                                    Enable 2FA
+                                </Button>
+                            )}
+                        </div>
+
+                        {showOTPInput && !is2FAEnabled && (
+                            <form action={confirmFormAction} className="mt-4 p-4 border rounded-md bg-gray-50 flex items-end gap-4">
+                                <div className="space-y-2 flex-1">
+                                    <Label htmlFor="otp">Enter the 6-digit code sent to your email</Label>
+                                    <Input id="otp" name="otp" required placeholder="123456" />
+                                </div>
+                                <Button type="submit">Verify & Enable</Button>
+                                {confirmState.error && <p className="text-red-500 text-sm">{confirmState.error}</p>}
+                                {confirmState.success && <p className="text-green-500 text-sm">{confirmState.message}</p>}
+                            </form>
+                        )}
+                    </div>
+                </div>
+
             </div>
 
             {/* Settings Information */}

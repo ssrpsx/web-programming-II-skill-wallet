@@ -12,6 +12,9 @@
     "@types/bun": "latest",
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.7",
+    "@types/nodemailer": "^8.0.0",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.8",
     "zod": "^4.3.6"
   },
   "peerDependencies": {
@@ -20,7 +23,11 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^5.2.1",
+    "google-auth-library": "^10.6.2",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.4.1"
+    "mongoose": "^9.4.1",
+    "nodemailer": "^8.0.10",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1"
   }
 }
