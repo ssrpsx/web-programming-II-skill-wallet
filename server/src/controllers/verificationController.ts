@@ -67,6 +67,62 @@ export const getAllVerifications = async (req: Request, res: Response) => {
   }
 };
 
+export const getPublicUserPortfolio = async (req: Request, res: Response) => {
+  try {
+    const verifications = await Verification.find({ userId: req.params.userId })
+      .populate("userId", "name")
+      .populate("skillId", "title description category");
+
+    if (!verifications.length) {
+      return res.json({ user: null, verifications: [] });
+    }
+
+    const user = { name: (verifications[0].userId as any).name };
+
+    const publicVerifications = verifications.map((v) => ({
+      _id: v._id,
+      skill: v.skillId,
+      levels: v.levelData.map((l: any) => ({
+        level: l.level,
+        status: l.status,
+        verifiedAt: l.verifiedAt,
+      })),
+      createdAt: v.createdAt,
+    }));
+
+    res.json({ user, verifications: publicVerifications });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Failed to fetch portfolio";
+    res.status(500).json({ error: message });
+  }
+};
+
+export const getPublicVerification = async (req: Request, res: Response) => {
+  try {
+    const verification = await Verification.findById(req.params.id)
+      .populate("userId", "name")
+      .populate("skillId", "title description category");
+    if (!verification) return res.status(404).json({ error: "Verification not found" });
+
+    const publicData = {
+      _id: verification._id,
+      skill: verification.skillId,
+      user: { name: (verification.userId as any).name },
+      levels: verification.levelData.map((l: any) => ({
+        level: l.level,
+        status: l.status,
+        verifiedAt: l.verifiedAt,
+      })),
+      createdAt: verification.createdAt,
+    };
+
+    res.json(publicData);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Failed to fetch verification";
+    res.status(500).json({ error: message });
+  }
+};
+
 export const getVerificationById = async (req: Request, res: Response) => {
   try {
     const verification = await Verification.findById(req.params.id)
@@ -240,6 +296,21 @@ export const completeLevel = async (req: Request, res: Response) => {
 
     if (levelEntry.status !== "pending") {
       return res.status(409).json({ error: `Level '${req.params.level}' is not pending (status: ${levelEntry.status})` });
+    }
+
+    // Permission check per level type
+    const currentUser = (req as any).user;
+    if (req.params.level === "interview") {
+      // Only interviewers can approve final interview
+      if (currentUser.role !== "interviewer") {
+        return res.status(403).json({ error: "Only interviewers can complete the interview level." });
+      }
+    } else if (req.params.level === "p2p_interview") {
+      // Only the assigned peer can approve P2P
+      const assignedPeerId = levelEntry.verifiedBy?.toString();
+      if (currentUser.role !== "interviewer" && assignedPeerId !== currentUser._id.toString()) {
+        return res.status(403).json({ error: "Only the assigned peer reviewer can complete the P2P level." });
+      }
     }
 
     // Update status and metadata

@@ -5,6 +5,10 @@ import { requireRole } from "../middleware/roleMiddleware";
 
 const router = Router();
 
+// Public endpoints - no auth required
+router.get("/user/:userId/public", verificationController.getPublicUserPortfolio);
+router.get("/:id/public", verificationController.getPublicVerification);
+
 // Only authenticated users can request or view verifications
 router.post("/", authMiddleware, verificationController.createVerification);
 router.get("/", authMiddleware, verificationController.getAllVerifications);
@@ -15,8 +19,8 @@ router.post("/:id/p2p/initiate", authMiddleware, verificationController.initiate
 router.post("/:id/interview/initiate", authMiddleware, verificationController.initiateInterview);
 router.post("/:id/retry", authMiddleware, verificationController.retryChoice);
 
-// Interviewers can complete levels
-router.patch("/:id/levels/:level/complete", authMiddleware, requireRole(["interviewer"]), verificationController.completeLevel);
+// Level completion: permission checked inside controller per level type
+router.patch("/:id/levels/:level/complete", authMiddleware, verificationController.completeLevel);
 
 router.get("/:id", authMiddleware, verificationController.getVerificationById);
 router.patch("/:id", authMiddleware, requireRole(["interviewer"]), verificationController.updateVerification);

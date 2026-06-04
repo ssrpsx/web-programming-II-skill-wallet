@@ -7,7 +7,7 @@ import {
     ItemDescription,
     ItemActions,
 } from '@/components/ui/item'
-import { ChevronRight } from 'lucide-react'
+import { ChevronRight, Share2, Check } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -44,6 +44,16 @@ const statusLabelMap: Record<VerifyStatus, string> = {
 export function VerifyItemComponent({ item, routePath: propRoutePath }: VerifyItemComponentProps) {
     const router = useRouter()
     const [isRetrying, setIsRetrying] = useState(false)
+    const [copied, setCopied] = useState(false)
+
+    const handleShare = (e: React.MouseEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+        const url = `${window.location.origin}/share/${item.id}`
+        navigator.clipboard.writeText(url)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+    }
 
     // For failed status, call retry API then navigate to choice
     // For failed status, handle based on level
@@ -111,6 +121,17 @@ export function VerifyItemComponent({ item, routePath: propRoutePath }: VerifyIt
 
                 {/* Action */}
                 <ItemActions className="ml-4 flex-shrink-0">
+                    <button
+                        onClick={handleShare}
+                        className="p-2 hover:bg-gray-100 rounded transition"
+                        title="Copy share link"
+                    >
+                        {copied ? (
+                            <Check size={16} className="text-green-500" />
+                        ) : (
+                            <Share2 size={16} className="text-gray-400" />
+                        )}
+                    </button>
                     <div className="p-2 hover:bg-gray-100 rounded transition">
                         <ChevronRight size={18} className="text-gray-400" />
                     </div>
@@ -151,6 +172,17 @@ return (
 
                 {/* Action */}
                 <ItemActions className="ml-4">
+                    <button
+                        onClick={handleShare}
+                        className="p-2 hover:bg-gray-100 rounded transition"
+                        title="Copy share link"
+                    >
+                        {copied ? (
+                            <Check size={16} className="text-green-500" />
+                        ) : (
+                            <Share2 size={16} className="text-gray-400" />
+                        )}
+                    </button>
                     <button className="p-2 hover:bg-gray-100 rounded transition">
                         <ChevronRight size={18} className="text-gray-400" />
                     </button>
