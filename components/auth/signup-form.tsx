@@ -19,7 +19,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "../ui/button"
 import Link from "next/link"
 
-const BACKEND_URL = "http://localhost:8080"
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:8080"
 
 function GoogleButton() {
   return (
